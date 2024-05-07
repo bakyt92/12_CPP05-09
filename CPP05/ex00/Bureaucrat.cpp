@@ -6,15 +6,21 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:43:43 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/07 17:33:45 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:01:57 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade(grade) 
+Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name)
 { 
 	std::cout << "Bureaucrat constructor is called." << std::endl;
+	if (grade > 150)
+		throw GradeTooLowException();
+	else if (grade < 1)
+		throw GradeTooHighException();
+	else 
+		this->_grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &src)
@@ -62,8 +68,18 @@ void Bureaucrat::downGrade(void)
 	return;
 }
 
+const char* Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return "Grade is too low.";
+}
 
-Bureaucrat::~Bureaucrat
+const char* Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return "Grade is too high.";
+}
+
+
+Bureaucrat::~Bureaucrat()
 { 
 	std::cout << "Bureaucrat destructor is called." << std::endl;
 }

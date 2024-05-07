@@ -6,13 +6,13 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:43:47 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/07 17:27:10 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:01:03 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
-
+#include <stdexcept>
 
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
@@ -20,6 +20,7 @@
 class Bureaucrat
 {
 private:
+	Bureaucrat();
 	const std::string _name;
 	int _grade;
 public:
@@ -32,6 +33,16 @@ public:
 	void upGrade(void);
 	void downGrade(void);
 	~Bureaucrat();
+
+	class GradeTooHighException {
+		public:
+			virtual const char * what() const throw();
+	};
+	class GradeTooLowException {
+		public:
+			virtual const char * what() const throw();
+	};
+
 };
 
 #endif
