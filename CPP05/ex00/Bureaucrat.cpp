@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:43:43 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/07 17:30:08 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/07 17:33:45 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,23 @@ int Bureaucrat::getGrade() const
 	return this->_grade;
 }
 
-cons
+void Bureaucrat::setGrade(int g)
+{
+	this->_grade = g;
+	return;
+}
+
+void Bureaucrat::upGrade(void)
+{
+	this->_grade--;
+	return;
+}
+
+void Bureaucrat::downGrade(void)
+{
+	this->_grade++;
+	return;
+}
 
 
 Bureaucrat::~Bureaucrat
