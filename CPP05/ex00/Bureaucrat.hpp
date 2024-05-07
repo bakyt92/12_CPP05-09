@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:43:47 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/07 17:16:34 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/07 17:27:10 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ public:
 	const std::string getName() const;
 	void setGrade(int g);
 	int getGrade() const;
+	void upGrade(void);
+	void downGrade(void);
 	~Bureaucrat();
 };
 
