@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:43:47 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/07 19:01:03 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/07 23:36:30 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ public:
 	void downGrade(void);
 	~Bureaucrat();
 
-	class GradeTooHighException {
+	class GradeTooHighException : public std::exception {
 		public:
 			virtual const char * what() const throw();
 	};
-	class GradeTooLowException {
+	class GradeTooLowException : public std::exception {
 		public:
 			virtual const char * what() const throw();
 	};

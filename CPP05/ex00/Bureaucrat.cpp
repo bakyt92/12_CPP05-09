@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:43:43 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/07 19:44:58 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/07 23:10:00 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ void Bureaucrat::setGrade(int g)
 
 void Bureaucrat::upGrade(void)
 {
+	this->_grade--;
+	std::cout << this->getName() << " has been upgraded by 1 lvl" << std::endl;
 	if (this->getGrade() > 150)
 		throw GradeTooLowException();
 	else if (this->getGrade() < 1)
-		throw GradeTooLowException();
-	this->_grade--;
-	std::cout << this->getName() << " has been upgraded by 1 lvl" << std::endl;
+		throw GradeTooHighException();
 	return;
 	/*
 	if (this->getGrade() <= 150 && this->getGrade() >= 1)
@@ -81,12 +81,13 @@ void Bureaucrat::upGrade(void)
 
 void Bureaucrat::downGrade(void)
 {
+	this->_grade++;
+	std::cout << this->getName() << " has been downgraded by 1 lvl" << std::endl;
 	if (this->getGrade() > 150)
 		throw GradeTooLowException();
 	else if (this->getGrade() < 1)
-		throw GradeTooLowException();
-	this->_grade++;
-	std::cout << this->getName() << " has been downgraded by 1 lvl" << std::endl;
+		throw GradeTooHighException();
+	
 	/*
 	if (this->getGrade() <= 150 && this->getGrade() >= 1)
 		{
