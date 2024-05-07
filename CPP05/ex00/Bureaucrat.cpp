@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:43:43 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/07 19:01:57 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:18:23 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,14 @@ void Bureaucrat::setGrade(int g)
 
 void Bureaucrat::upGrade(void)
 {
+	std::cout << this->getName() << " has been upgraded by 1 lvl" << std::endl;
 	this->_grade--;
 	return;
 }
 
 void Bureaucrat::downGrade(void)
 {
+	std::cout << this->getName() << " has been downgraded by 1 lvl" << std::endl;
 	this->_grade++;
 	return;
 }
@@ -78,6 +80,10 @@ const char* Bureaucrat::GradeTooHighException::what() const throw()
 	return "Grade is too high.";
 }
 
+std::ostream& operator<< (std::ostream &os, const Bureaucrat &src)
+{
+	std::cout << "Bureaucrat is named " << src.getName() << " with grade: " << src.getGrade() << std::endl;
+}
 
 Bureaucrat::~Bureaucrat()
 { 
