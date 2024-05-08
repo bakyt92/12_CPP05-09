@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:43:43 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/08 13:39:13 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/08 13:42:56 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat &rhs)
 	std::cout << "Copy assignment operator called." << std::endl;
 	if (this != & rhs)
 	{
-		// this->_name = rhs._name;
 		this->_grade = rhs._grade;
 	}
 	return *this;
@@ -65,18 +64,6 @@ void Bureaucrat::upGrade(void)
 	else if (this->getGrade() < 1)
 		throw GradeTooHighException();
 	return;
-	/*
-	if (this->getGrade() <= 150 && this->getGrade() >= 1)
-		{
-			this->_grade--;
-			std::cout << this->getName() << " has been upgraded by 1 lvl" << std::endl;
-		}
-	if (this->getGrade() > 150)
-		throw GradeTooLowException();
-	else if (this->getGrade() < 1)
-		throw GradeTooLowException();
-		*/
-	return;
 }
 
 void Bureaucrat::downGrade(void)
@@ -87,18 +74,6 @@ void Bureaucrat::downGrade(void)
 		throw GradeTooLowException();
 	else if (this->getGrade() < 1)
 		throw GradeTooHighException();
-	
-	/*
-	if (this->getGrade() <= 150 && this->getGrade() >= 1)
-		{
-			this->_grade++;
-			std::cout << this->getName() << " has been downgraded by 1 lvl" << std::endl;
-		}
-	if (this->getGrade() > 150)
-		throw GradeTooLowException();
-	else if (this->getGrade() < 1)
-		throw GradeTooLowException();
-		*/
 	return;
 }
 

@@ -6,11 +6,11 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:43:49 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/07 23:48:44 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/08 13:41:09 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
