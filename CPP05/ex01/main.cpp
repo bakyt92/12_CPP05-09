@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:43:49 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/08 13:41:09 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/08 18:12:48 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main()
 {
-	Bureaucrat Premiere("First_b", 2);
+	Bureaucrat Premiere("First_b", 11);
 	// Bureaucrat Deuxieme("Second_b", 0);
 	// Bureaucrat Troisieme("Third_b", 155);
 	try {
@@ -33,6 +33,15 @@ int main()
 		// Deuxieme.upGrade();
 	}
 	catch (const std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+	try
+	{
+		Form formz("Billet Paris", 10, 8);
+		Premiere.signForm(formz);
+	}
+	catch(const std::exception& e)
+	{
 		std::cout << e.what() << std::endl;
 	}
 	return 0;

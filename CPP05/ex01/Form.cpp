@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 12:14:53 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/08 17:10:22 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/08 18:08:35 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Form::Form (std::string name, int gradeToSign, int gradeToExecute) : _name(name)
     this->_isSigned = false;
     if (_gradeToExecute > 150 || _gradeToSign > 150)
         throw Bureaucrat::GradeTooLowException();
-    else if (_gradeToExecute < 1 || _gradeToSign > 1)
+    else if (_gradeToExecute < 1 || _gradeToSign < 1)
         throw Bureaucrat::GradeTooHighException();
     std::cout << "Form constructor is called." << std::endl;
 }
@@ -60,7 +60,7 @@ void Form::beSigned(const Bureaucrat &rhs)
     if (rhs.getGrade() <= this->getGradeToSign())
         this->_isSigned = true;
     else 
-        throw (GradeTooLowException());
+        throw (Bureaucrat::GradeTooLowException());
 }
 
 std::ostream& operator<< (std::ostream &output, const Form &src)
