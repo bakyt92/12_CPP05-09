@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:43:47 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/07 23:36:30 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/08 13:56:34 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ public:
 	};
 
 };
+
+std::ostream& operator<< (std::ostream &os, const Bureaucrat &src);
 
 #endif

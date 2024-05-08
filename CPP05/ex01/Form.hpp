@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 12:14:57 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/08 13:19:59 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:24:59 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,14 @@ public:
     ~Form();
     Form(const Form &src);
     Form& operator= (const Form &rhs);
+    int getGradeToSign();
+    int getGradeToExecute();
+    std::string getName();
+    bool getIsSigned();
+    void beSigned(const Bureaucrat &rhs);
+    
 };
 
-
+std::ostream& operator<< (std::ostream &os, const Form &src);
 
 #endif
