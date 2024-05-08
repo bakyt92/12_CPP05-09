@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:43:43 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/08 13:42:56 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:40:53 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name)
 		this->_grade = grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &src) : _grade(src.getGrade()), _name(src.getName())
+Bureaucrat::Bureaucrat(const Bureaucrat &src) : _name(src.getName()), _grade(src.getGrade())
 {
 	std::cout << "Bureaucrat copy constructor is called." << std::endl;
 	*this = src;

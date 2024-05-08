@@ -6,11 +6,11 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:43:43 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/08 13:43:04 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:09:04 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name)
 { 
@@ -23,7 +23,7 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name)
 		this->_grade = grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &src) : _grade(src.getGrade()), _name(src.getName())
+Bureaucrat::Bureaucrat(const Bureaucrat &src) : _name(src.getName()), _grade(src.getGrade())
 {
 	std::cout << "Bureaucrat copy constructor is called." << std::endl;
 	*this = src;
@@ -77,14 +77,32 @@ void Bureaucrat::downGrade(void)
 	return;
 }
 
+/* -- New function -- */
+
+void Bureaucrat::signForm(Form &src)
+{
+	try
+	{
+		src.beSigned(*this);
+		std::cout << "Bureaucrat " << this->getName() << " signed a form "  << src.getName() << std::endl; 
+		
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << "Bureaucrat " << this->getName() << " could not sign a form " 
+		 << src.getName() << " because " << e.what() << std::endl;
+	}
+}
+/* -- New function OLD -- */
+
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return "Grade is too low.";
+	return "Grade of Bureaucrat is too low.";
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return "Grade is too high.";
+	return "Grade of Bureaucrat is too high.";
 }
 
 std::ostream& operator<< (std::ostream &os, const Bureaucrat &src)

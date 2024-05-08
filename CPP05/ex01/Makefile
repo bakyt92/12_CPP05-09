@@ -6,15 +6,15 @@
 #    By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/07 16:43:52 by ufitzhug          #+#    #+#              #
-#    Updated: 2024/05/07 16:49:16 by ufitzhug         ###   ########.fr        #
+#    Updated: 2024/05/08 17:09:55 by ufitzhug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Bureaucrat 
 
-SRC = main.cpp Bureaucrat.cpp
+SRC = main.cpp Bureaucrat.cpp Form.cpp
 
-HEADER = Bureaucrat.hpp
+HEADER = Bureaucrat.hpp Form.hpp
 
 OBJ = $(SRC:%.cpp= %.o)
 
