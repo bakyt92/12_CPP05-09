@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:15:31 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/09 21:55:29 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/09 21:56:28 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void ShrubberyCreationForm::execute (const Bureaucrat &executor) const
 //     "        {/{/{\{\/}{/{\{\{\(_)/} " << std::endl <<
 //     "         {/{\{\{\/}/}{\{\\}/} " << std::endl <<
 //     "          {){/ {\/}{\/} \}\} " << std::endl <<
-//     "          (_)  \.-'.-/ " << std::endl <<
+fd<<"          (_)  '\'.-'.-/ " << std::endl <<
 fd<<"      __...--- |'-.-'| --...__" << std::endl <<
     "...--    .-'   |'-.-'|  ' -.  --..__ " << std::endl <<
     "    ' .  . '   |.'-._| '  . .  '   jro " << std::endl <<
