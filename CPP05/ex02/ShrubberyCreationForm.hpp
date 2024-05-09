@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:15:29 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/09 18:51:35 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/09 19:28:19 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ public:
     ShrubberyCreationForm(const ShrubberyCreationForm &src);
     ShrubberyCreationForm& operator=(const ShrubberyCreationForm &rhs);
     ~ShrubberyCreationForm();
-    virtual void execute (const Bureaucrat &executor);
+    virtual void execute (const Bureaucrat &executor) const;
     std::string getTarget();
 };

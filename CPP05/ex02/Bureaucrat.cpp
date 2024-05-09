@@ -6,11 +6,11 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:43:43 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/08 22:04:53 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/09 20:44:24 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name)
 { 
@@ -79,7 +79,7 @@ void Bureaucrat::downGrade(void)
 
 /* -- New function -- */
 
-void Bureaucrat::signForm(Form &src)
+void Bureaucrat::signForm(AForm &src)
 {
 	try
 	{

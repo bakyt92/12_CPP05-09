@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:15:24 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/09 18:29:57 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/09 21:10:15 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ public:
     std::string getName() const;
     bool getIsSigned() const;
     void beSigned(const Bureaucrat &rhs);
-    virtual void execute(const Bureaucrat &executor) { } = 0; 
+    void toExecute(const Bureaucrat &rhs);
+    virtual void execute(const Bureaucrat &executor) const = 0; 
     
     class GradeTooHighException : public std::exception {
 		public:
@@ -44,6 +45,9 @@ public:
 		public:
 			virtual const char * what() const throw();
 	};
+    class FormNotSignedException : public std::exception {
+		public:
+			virtual const char * what() const throw();
 };
 
 std::ostream& operator<< (std::ostream &os, const AForm &src);

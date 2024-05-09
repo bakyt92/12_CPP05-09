@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:15:26 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/08 22:24:46 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/09 21:12:08 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,23 @@ void AForm::beSigned(const Bureaucrat &rhs)
         this->_isSigned = true;
     else 
         throw (Bureaucrat::GradeTooLowException());
+}
+
+void AForm::toExecute(const Bureaucrat &rhs)
+{
+    if (_isSigned == false)
+        throw (AForm::FormNotSignedException());
+    else 
+        {
+            if (this->getGradeToExecute() > rhs.getGrade())
+                throw (Bureaucrat::GradeTooLowException());
+        }
+    return;
+}
+
+const char* AForm::FormNotSignedException::what() const throw()
+{
+	return "Form is not signed.";
 }
 
 std::ostream& operator<< (std::ostream &output, const AForm &src)
