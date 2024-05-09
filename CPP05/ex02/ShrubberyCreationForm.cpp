@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:15:31 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/09 21:26:21 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/09 21:55:29 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
     std::cout << "ShrubberyCreationForm constructor with target is called." << std::endl;
 }
 
-ShrubberyCreationForm(const ShrubberyCreationForm &src) 
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) 
     : AForm(src), _target(src._target)
 {
-    // *this = src; 
+    *this = src; 
 }
    
-ShrubberyCreationForm& operator=(const ShrubberyCreationForm &rhs)
+ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &rhs)
 {
     if (this != &rhs)
         {
@@ -48,13 +48,13 @@ std::string ShrubberyCreationForm::getTarget()
     return this->_target;
 }
 
-virtual void ShrubberyCreationForm::execute (const Bureaucrat &executor)
+void ShrubberyCreationForm::execute (const Bureaucrat &executor) const
 {
     toExecute(executor);
     try 
     {
         std::ofstream fd(this->_target + "_shrubbery");
-        if (!fd.is_open)
+        if (!fd.is_open())
             throw std::ios_base::failure("Failed to open file.");
         std::cout << "Writing to file: >> " << std::endl;
         fd << "              " << std::endl;
@@ -77,7 +77,7 @@ virtual void ShrubberyCreationForm::execute (const Bureaucrat &executor)
 //     "         {/{\{\{\/}/}{\{\\}/} " << std::endl <<
 //     "          {){/ {\/}{\/} \}\} " << std::endl <<
 //     "          (_)  \.-'.-/ " << std::endl <<
-fd <<"      __...--- |'-.-'| --...__" << std::endl <<
+fd<<"      __...--- |'-.-'| --...__" << std::endl <<
     "...--    .-'   |'-.-'|  ' -.  --..__ " << std::endl <<
     "    ' .  . '   |.'-._| '  . .  '   jro " << std::endl <<
     "'-  '    .--'  | '-.'|    .  '  . ' " << std::endl <<

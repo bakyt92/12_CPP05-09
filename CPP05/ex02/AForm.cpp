@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:15:26 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/09 21:12:08 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/09 21:50:51 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void AForm::beSigned(const Bureaucrat &rhs)
         throw (Bureaucrat::GradeTooLowException());
 }
 
-void AForm::toExecute(const Bureaucrat &rhs)
+void AForm::toExecute(const Bureaucrat &rhs) const
 {
     if (_isSigned == false)
         throw (AForm::FormNotSignedException());
