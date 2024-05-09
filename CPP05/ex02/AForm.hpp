@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:15:24 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/09 21:10:15 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/09 21:23:45 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ public:
     class FormNotSignedException : public std::exception {
 		public:
 			virtual const char * what() const throw();
+    };
 };
 
 std::ostream& operator<< (std::ostream &os, const AForm &src);
