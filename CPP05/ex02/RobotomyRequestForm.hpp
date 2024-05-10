@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:15:34 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/10 15:11:09 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:50:27 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define ROBOTOMYREQUESTFORM_HPP
 
 #include "AForm.hpp"
+#include <cstdlib>
+#include <ctime>
 
 class RobotomyRequestForm : public AForm
 {
