@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:15:36 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/10 18:16:13 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:53:46 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ std::string RobotomyRequestForm::getTarget()
 
 void RobotomyRequestForm::execute (const Bureaucrat &executor) const
 {
+    std::cout << "1_Execute Robotomy is called" << std::endl;
     toExecute(executor);
     std::cout << "Makes drilling noises ... BZZzzz" << std::endl;
-	std::srand(std::time(nullptr));
+	std::srand(std::time(NULL));
 	int random_val = std::rand();
 	if (random_val % 2 == 0)
 	{

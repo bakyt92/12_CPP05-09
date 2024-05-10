@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:15:26 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/09 21:50:51 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:56:17 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void AForm::toExecute(const Bureaucrat &rhs) const
         throw (AForm::FormNotSignedException());
     else 
         {
-            if (this->getGradeToExecute() > rhs.getGrade())
+            if (this->getGradeToExecute() < rhs.getGrade())
                 throw (Bureaucrat::GradeTooLowException());
         }
     return;
