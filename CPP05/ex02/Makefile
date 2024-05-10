@@ -6,15 +6,15 @@
 #    By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/07 16:43:52 by ufitzhug          #+#    #+#              #
-#    Updated: 2024/05/09 20:39:41 by ufitzhug         ###   ########.fr        #
+#    Updated: 2024/05/10 17:59:28 by ufitzhug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Bureaucrat 
 
-SRC = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp
+SRC = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 
-HEADER = Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp
+HEADER = Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp 
 
 OBJ = $(SRC:%.cpp= %.o)
 

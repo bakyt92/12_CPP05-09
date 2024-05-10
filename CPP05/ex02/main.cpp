@@ -6,11 +6,12 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:43:49 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/09 20:41:11 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:07:13 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 int main()
 {
@@ -19,7 +20,9 @@ int main()
 	// Bureaucrat Troisieme("Third_b", 155);
 	try {
 		Bureaucrat Deuxieme("Second_b", 0);
-	// 	Bureaucrat Troisieme("Third_b", 155);
+	 	Bureaucrat Troisieme("Third_b", 155);
+		ShrubberyCreationForm form1 ("Melanin");
+		
 	}
 	catch (const std::exception &e) {
 		std::cout << e.what() << std::endl;
@@ -35,14 +38,5 @@ int main()
 	catch (const std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
-	// try
-	// {
-	// 	AForm formz("Billet Paris", 10, 8);
-	// 	Premiere.signForm(formz);
-	// }
-	// catch(const std::exception& e)
-	// {
-	// 	std::cout << e.what() << std::endl;
-	// }
 	return 0;
 }
