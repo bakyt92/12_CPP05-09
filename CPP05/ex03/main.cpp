@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:43:49 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/10 20:57:54 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/10 21:11:01 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main()
 	Bureaucrat Premiere("First_b", 5);
 
 	Intern RndIntern;
-	AForm* rrf = NULL;
+	AForm* rrf;
 	rrf = &RndIntern.makeForm("Robotomy request", "Bender");
 	if (rrf != NULL)
 	{

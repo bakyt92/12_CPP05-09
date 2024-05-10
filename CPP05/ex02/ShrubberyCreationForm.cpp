@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:15:31 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/10 19:49:22 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/10 21:33:26 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ fd<<"      __...--- |'-.-'| --...__" << std::endl <<
     "     .      ~,                         " << std::endl <<
     " .       .   |    .    ' '-. " << std::endl;
     fd << "                                  "<< std::endl;
+    fd << "--------->> Author of tree is ufitzhug (copied from open-source) <<---------"<< std::endl;
         fd.close();
         std::cout << "File is finalised " << std::endl;
     }

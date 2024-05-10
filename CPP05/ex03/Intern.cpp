@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:54:53 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/10 20:48:18 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/10 21:31:05 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,11 @@ Intern::~Intern()
 AForm& Intern::makeForm(std::string name_form, std::string target)
 {
 	AForm* form1;
-	switch (name_form[0])
+	try
+	{
+		if (target.length() < 1)
+			throw NoTargetException();
+		switch (name_form[0])
 	{
 	case 'S':
 		form1 = new ShrubberyCreationForm(target);
@@ -58,8 +62,24 @@ AForm& Intern::makeForm(std::string name_form, std::string target)
 		break;
 	default:
 		form1 = NULL;
-		std::cout << "Intern can't create a form named " << name_form << std::endl;
+		throw NotCorrectNameException();
+		// std::cout << "Intern can't create a form named " << name_form << std::endl;
 		break;
 	}
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << "Intern can't create a form named " << name_form << " because of " << e.what() << std::endl;
+	}
 	return (*form1);
+}
+
+const char* Intern::NotCorrectNameException::what() const throw()
+{
+	return "Name form is not correct. It should begin with (R) for Robotomy, (S) for Shrubbery, (P) for Presidential pardon.";
+}
+
+const char* Intern::NoTargetException::what() const throw()
+{
+	return "Target is not declared";
 }
