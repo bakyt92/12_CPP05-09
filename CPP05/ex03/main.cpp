@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:43:49 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/10 21:11:01 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/14 20:01:40 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,14 @@ int main()
 	}
 	delete rrf;
 	return 0;
-}
+}Why don't some Atom commands work?
+This is because VS Code has not implemented those features. Head on over to this GitHub issue and let the VS Code team know what you'd like to see.
+
+Additionally, you can install an extension for many of these features:
+
+FontSize Shortcuts
+change case
+transpose
+How do I contribute a keyboard shortcut?
+We may have missed a keyboard shortcut. If we did please help us out! It is very easy to make a PR.
+
