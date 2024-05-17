@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:11:10 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/17 19:49:41 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/18 02:27:34 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,19 @@ bool ScalarConverter::IsPrintableChar(const std::string &str)
 bool ScalarConverter::IsDouble(const std::string &str)
 {
 	if (str == "-inf" || str == "+inf" || str == "nan")
-	{
 		return true;
-	}
 	size_t iter = str.find(".");
 	if (iter == std::string::npos)
+		return false;
+	int i = 0;
+	int counter = 0;
+	int n = str.size();
+	while (i < n)
+	{
+		if (str[i] == '.')
+			counter++;
+	}
+	if (counter != 1)
 		return false;
 	else if (str.find_first_not_of("-+0123456789.") == std::string::npos)
 		return true;
