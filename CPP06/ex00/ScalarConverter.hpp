@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:11:12 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/17 15:17:01 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/17 18:52:42 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ private:
 	/* data */
 public:
 	ScalarConverter(/* args */);
-	void Conversion(std::string input);
+	void Convert(std::string input);
 	~ScalarConverter();
 };
 
