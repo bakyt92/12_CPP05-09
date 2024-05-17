@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:11:12 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/17 15:14:27 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:17:01 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,6 @@ public:
 	void Conversion(std::string input);
 	~ScalarConverter();
 };
-
-ScalarConverter::ScalarConverter(/* args */)
-{
-}
-
-ScalarConverter::~ScalarConverter()
-{
-}
 
 
 #endif
