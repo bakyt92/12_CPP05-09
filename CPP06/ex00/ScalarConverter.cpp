@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:11:10 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/18 20:52:13 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/18 20:53:05 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,10 +197,7 @@ void ScalarConverter::ConvertToFloat(const std::string &str)
 	else if (str == "nanf" || str == "+inff" || str == "-inff")
 			std::cout << "Float: " << str << std::endl;
 	else if (str.length() == 1 && !isdigit(str[0]))
-	{
 		std::cout << "Float: " << std::setprecision(1) << static_cast<float>(str[0]) << "f" << std::endl;
-		return ;
-	}
 	else
 	{
 		char *Ptr1 = NULL;
@@ -221,10 +218,7 @@ void ScalarConverter::ConvertToDouble(const std::string &str)
 	else if (str == "nanf" || str == "+inff" || str == "-inff")
 			std::cout << "Float: " << str << std::endl;
 	else if (str.length() == 1 && !isdigit(str[0]))
-	{
 		std::cout << "Float: " << std::setprecision(1) << static_cast<float>(str[0]) << "f" << std::endl;
-		return ;
-	}
 	else
 	{
 		char *Ptr1 = NULL;
