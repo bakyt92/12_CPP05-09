@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:11:12 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/18 01:38:49 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/18 19:35:37 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <iostream>
 #include <string>
 #include <cctype>
+#include <stdlib.h>
+#include <cmath>
 
 class ScalarConverter
 {
@@ -29,6 +31,10 @@ public:
 	bool IsInteger(const std::string &str);
 	bool IsDouble(const std::string &str);
 	bool IsFloat(const std::string &str);
+	void ConvertToChar(const std::string &str);
+	void ConvertToInt(const std::string &str);
+	void ConvertToFloat(const std::string &str);
+	void ConvertToDouble(const std::string &str);
 	~ScalarConverter();
 };
 
