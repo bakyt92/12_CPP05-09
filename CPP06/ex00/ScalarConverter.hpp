@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:11:12 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/18 19:58:17 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/18 20:47:09 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include <stdlib.h>
 #include <cmath>
 #include <limits.h>
+#include <limits>
+#include <iomanip>
 
 class ScalarConverter
 {

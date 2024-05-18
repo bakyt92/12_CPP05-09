@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:11:10 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/18 20:18:06 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/18 20:52:13 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,10 +192,48 @@ void ScalarConverter::ConvertToInt(const std::string &str)
 	
 void ScalarConverter::ConvertToFloat(const std::string &str)
 {
-
+	if (str == "nan" || str == "+inf" || str == "-inf")
+			std::cout << "Float: " << str << "f" << std::endl;
+	else if (str == "nanf" || str == "+inff" || str == "-inff")
+			std::cout << "Float: " << str << std::endl;
+	else if (str.length() == 1 && !isdigit(str[0]))
+	{
+		std::cout << "Float: " << std::setprecision(1) << static_cast<float>(str[0]) << "f" << std::endl;
+		return ;
+	}
+	else
+	{
+		char *Ptr1 = NULL;
+		double res = strtod(str.c_str(), &Ptr1);
+		if (errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL) \
+		 || res > std::numeric_limits<float>::max() || res < std::numeric_limits<float>::min())
+			std::cout << "Float: impossible" << std::endl;
+		else
+			std::cout << "Float: " << std::fixed << std::setprecision(1) << static_cast<float>(res) << "f" << std::endl;
+	}
+	return ;
 }
 	
 void ScalarConverter::ConvertToDouble(const std::string &str)
 {
-
+	if (str == "nan" || str == "+inf" || str == "-inf")
+			std::cout << "Float: " << str << "f" << std::endl;
+	else if (str == "nanf" || str == "+inff" || str == "-inff")
+			std::cout << "Float: " << str << std::endl;
+	else if (str.length() == 1 && !isdigit(str[0]))
+	{
+		std::cout << "Float: " << std::setprecision(1) << static_cast<float>(str[0]) << "f" << std::endl;
+		return ;
+	}
+	else
+	{
+		char *Ptr1 = NULL;
+		double res = strtod(str.c_str(), &Ptr1);
+		if (errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL) \
+		 || res > std::numeric_limits<float>::max() || res < std::numeric_limits<float>::min())
+			std::cout << "Float: impossible" << std::endl;
+		else
+			std::cout << "Float: " << std::fixed << std::setprecision(1) << static_cast<float>(res) << std::endl;
+	}
+	return ;
 }
