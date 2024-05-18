@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:11:10 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/18 21:02:36 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/18 21:15:35 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ bool ScalarConverter::IsPrintableChar(const std::string &str)
 		if (std::isprint(str[0]) != 0)
 			return true;
 	}
-	else 
-		return false;
+	return false;
 }
 
 bool ScalarConverter::IsDouble(const std::string &str)
@@ -91,7 +90,7 @@ bool ScalarConverter::IsDouble(const std::string &str)
 		return false;
 	else if (str.find_first_not_of("-+0123456789.") == std::string::npos)
 		return true;
-	else if (str.find_first_not_of("-+0123456789.") != std::string::npos)
+	else
 		return false;
 }
 
@@ -121,8 +120,7 @@ bool ScalarConverter::IsFloat(const std::string &str)
 		return false;
 	else if (str.find_first_not_of("-+0123456789.f") == std::string::npos)
 		return true;
-	else if (str.find_first_not_of("-+0123456789.f") != std::string::npos)
-		return false; 	
+	return false; 	
 }
 
 void ScalarConverter::ConvertToChar(const std::string &str)
@@ -150,7 +148,7 @@ void ScalarConverter::ConvertToChar(const std::string &str)
 	{
 		char *Ptr1 = NULL;
 		double res = strtod(str.c_str(), &Ptr1);
-		if (errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL) || res > 255 || res < 0)
+		if ((errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL)) || res > 255 || res < 0)
 		{
 			std::cout << "Char: impossible" << std::endl;
 		}
@@ -183,7 +181,7 @@ void ScalarConverter::ConvertToInt(const std::string &str)
 	{
 		char *Ptr1 = NULL;
 		double res = strtod(str.c_str(), &Ptr1);
-		if (errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL) || res > INT_MAX || res < INT_MIN)
+		if ((errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL)) || res > INT_MAX || res < INT_MIN)
 			std::cout << "Int: impossible" << std::endl;
 		else
 			std::cout << "Int: " << static_cast<int>(res) << std::endl;
@@ -202,7 +200,7 @@ void ScalarConverter::ConvertToFloat(const std::string &str)
 	{
 		char *Ptr1 = NULL;
 		double res = strtod(str.c_str(), &Ptr1);
-		if (errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL) \
+		if ((errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL)) \
 		 		|| res > std::numeric_limits<float>::max() || res < std::numeric_limits<float>::min())
 			std::cout << "Float: impossible" << std::endl;
 		else
@@ -216,15 +214,17 @@ void ScalarConverter::ConvertToDouble(const std::string &str)
 	if (str == "nan" || str == "+inf" || str == "-inf")
 			std::cout << "Double: " << str << std::endl;
 	else if (str == "nanf" || str == "+inff" || str == "-inff")
-			std::cout << "Double: " << str << std::endl;
+	{
+		std::cout << "Double: " << str.substr(0, str.length() - 1) << std::endl;
+	}
+			
 	else if (str.length() == 1 && !isdigit(str[0]))
 		std::cout << "Double: " << std::setprecision(1) << static_cast<double>(str[0]) << std::endl;
 	else
 	{
 		char *Ptr1 = NULL;
 		double res = strtod(str.c_str(), &Ptr1);
-		if (errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL) \
-		 		|| res > std::numeric_limits<double>::max() || res < std::numeric_limits<double>::min())
+		if (errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL))
 			std::cout << "Double: impossible" << std::endl;
 		else
 			std::cout << "Double: " << std::fixed << std::setprecision(1) << static_cast<double>(res) << std::endl;
