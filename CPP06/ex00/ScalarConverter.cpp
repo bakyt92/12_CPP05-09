@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:11:10 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/18 19:46:52 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/18 19:58:54 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,15 +168,34 @@ void ScalarConverter::ConvertToChar(const std::string &str)
 	
 void ScalarConverter::ConvertToInt(const std::string &str)
 {
-
+	if (str == "+inff" || str == "-inff" || str == "nanf" \
+		|| str == "+inf" || str == "-inf" || str == "nan")
+	{
+		std::cout << "Int: impossible" << std::endl;
+		return ;
+	}
+	else if (str.length() == 1 && !isdigit(str[0]))
+	{
+		std::cout << "Char: " << static_cast<int>(str[0]) << std::endl;
+	}
+	else
+	{
+		char *Ptr1 = NULL;
+		double res = strtod(str.c_str(), &Ptr1);
+		if (errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL) \ 
+			|| res > INT_MAX || res < INT_MIN)
+		{
+			std::cout << "Int: impossible" << std::endl;
+		}
+	}
 }
 	
-void ConvertToFloat(const std::string &str)
+void ScalarConverter::ConvertToFloat(const std::string &str)
 {
 
 }
 	
-void ConvertToDouble(const std::string &str)
+void ScalarConverter::ConvertToDouble(const std::string &str)
 {
 
 }
