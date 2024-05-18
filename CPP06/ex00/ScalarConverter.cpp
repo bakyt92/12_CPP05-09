@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:11:10 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/18 20:53:05 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/18 21:02:36 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,7 @@ void ScalarConverter::ConvertToFloat(const std::string &str)
 		char *Ptr1 = NULL;
 		double res = strtod(str.c_str(), &Ptr1);
 		if (errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL) \
-		 || res > std::numeric_limits<float>::max() || res < std::numeric_limits<float>::min())
+		 		|| res > std::numeric_limits<float>::max() || res < std::numeric_limits<float>::min())
 			std::cout << "Float: impossible" << std::endl;
 		else
 			std::cout << "Float: " << std::fixed << std::setprecision(1) << static_cast<float>(res) << "f" << std::endl;
@@ -214,20 +214,20 @@ void ScalarConverter::ConvertToFloat(const std::string &str)
 void ScalarConverter::ConvertToDouble(const std::string &str)
 {
 	if (str == "nan" || str == "+inf" || str == "-inf")
-			std::cout << "Float: " << str << "f" << std::endl;
+			std::cout << "Double: " << str << std::endl;
 	else if (str == "nanf" || str == "+inff" || str == "-inff")
-			std::cout << "Float: " << str << std::endl;
+			std::cout << "Double: " << str << std::endl;
 	else if (str.length() == 1 && !isdigit(str[0]))
-		std::cout << "Float: " << std::setprecision(1) << static_cast<float>(str[0]) << "f" << std::endl;
+		std::cout << "Double: " << std::setprecision(1) << static_cast<double>(str[0]) << std::endl;
 	else
 	{
 		char *Ptr1 = NULL;
 		double res = strtod(str.c_str(), &Ptr1);
 		if (errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL) \
-		 || res > std::numeric_limits<float>::max() || res < std::numeric_limits<float>::min())
-			std::cout << "Float: impossible" << std::endl;
+		 		|| res > std::numeric_limits<double>::max() || res < std::numeric_limits<double>::min())
+			std::cout << "Double: impossible" << std::endl;
 		else
-			std::cout << "Float: " << std::fixed << std::setprecision(1) << static_cast<float>(res) << std::endl;
+			std::cout << "Double: " << std::fixed << std::setprecision(1) << static_cast<double>(res) << std::endl;
 	}
 	return ;
 }
