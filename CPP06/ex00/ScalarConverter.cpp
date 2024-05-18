@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:11:10 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/18 21:15:35 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/18 21:39:19 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,9 +199,8 @@ void ScalarConverter::ConvertToFloat(const std::string &str)
 	else
 	{
 		char *Ptr1 = NULL;
-		double res = strtod(str.c_str(), &Ptr1);
-		if ((errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL)) \
-		 		|| res > std::numeric_limits<float>::max() || res < std::numeric_limits<float>::min())
+		float res = strtof(str.c_str(), &Ptr1);
+		if ((errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL))) // СПРОСИТЬ почему ошибка возникает.
 			std::cout << "Float: impossible" << std::endl;
 		else
 			std::cout << "Float: " << std::fixed << std::setprecision(1) << static_cast<float>(res) << "f" << std::endl;
