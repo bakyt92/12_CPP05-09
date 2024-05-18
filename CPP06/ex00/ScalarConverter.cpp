@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:11:10 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/18 21:39:19 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/18 23:44:32 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,3 +230,4 @@ void ScalarConverter::ConvertToDouble(const std::string &str)
 	}
 	return ;
 }
+
