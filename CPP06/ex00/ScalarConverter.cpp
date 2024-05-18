@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:11:10 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/18 19:58:54 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/18 20:18:06 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,17 +176,17 @@ void ScalarConverter::ConvertToInt(const std::string &str)
 	}
 	else if (str.length() == 1 && !isdigit(str[0]))
 	{
-		std::cout << "Char: " << static_cast<int>(str[0]) << std::endl;
+		std::cout << "Int: " << static_cast<int>(str[0]) << std::endl;
+		return ;
 	}
 	else
 	{
 		char *Ptr1 = NULL;
 		double res = strtod(str.c_str(), &Ptr1);
-		if (errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL) \ 
-			|| res > INT_MAX || res < INT_MIN)
-		{
+		if (errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL) || res > INT_MAX || res < INT_MIN)
 			std::cout << "Int: impossible" << std::endl;
-		}
+		else
+			std::cout << "Int: " << static_cast<int>(res) << std::endl;
 	}
 }
 	
