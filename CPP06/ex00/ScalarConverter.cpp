@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:11:10 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/18 23:44:32 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/19 02:18:35 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 ScalarConverter::ScalarConverter()
 {
 	std::cout << "ScalarConverver constructor is called" << std::endl;
-	
 }
 
 ScalarConverter::~ScalarConverter()
@@ -25,7 +24,6 @@ ScalarConverter::~ScalarConverter()
 
 void ScalarConverter::Convert(std::string input)
 {
-	std::cout << "ScalarConverver constructor is called" << std::endl;
 	if (CheckInput(input) == false)
 		{
 			std::cout << "Please input correct type of data (Char, Int, Float, Double)" << std::endl;
@@ -199,8 +197,10 @@ void ScalarConverter::ConvertToFloat(const std::string &str)
 	else
 	{
 		char *Ptr1 = NULL;
-		float res = strtof(str.c_str(), &Ptr1);
-		if ((errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL))) // СПРОСИТЬ почему ошибка возникает.
+		double res = strtod(str.c_str(), &Ptr1);
+		std::cout << res << " " << errno << std::endl;
+		std::cout << "MAX: " <<  FLT_MAX  << " MIN: " <<  FLT_MIN << std::endl;
+		if (((errno == ERANGE && (res == HUGE_VAL || res == -HUGE_VAL))) || res > FLT_MAX || res < -FLT_MAX ) // СПРОСИТЬ почему ошибка возникает.
 			std::cout << "Float: impossible" << std::endl;
 		else
 			std::cout << "Float: " << std::fixed << std::setprecision(1) << static_cast<float>(res) << "f" << std::endl;
