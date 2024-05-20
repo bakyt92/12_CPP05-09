@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 22:55:57 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/20 17:14:33 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:51:42 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 #define BASE_HPP
 
 #include <iostream>
-
+#include <time.h>
+#include <cstdlib>
+#include <unistd.h>
 class Base
 {
 public:
-    Base(/* args */);
+    Base();
     virtual ~Base();
-    Base * generate(void);
-    void identify(Base* p);
-    void identify(Base& p);
 };
 
 
