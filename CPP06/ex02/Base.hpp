@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 22:55:57 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/19 23:05:52 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/19 23:11:11 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 class Base
 {
-private:
-    /* data */
 public:
     Base(/* args */);
     ~Base();
