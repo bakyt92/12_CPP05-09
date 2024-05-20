@@ -6,7 +6,15 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 22:55:46 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/19 22:55:47 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:54:20 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef A_HPP
+#define A_HPP
+
+#include "Base.hpp"
+
+class A : public Base {};
+
+#endif
