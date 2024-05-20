@@ -6,9 +6,11 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 19:08:22 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/20 19:16:22 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/20 19:28:15 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "whatever.hpp"
 
 int main( void ) 
 {
@@ -27,12 +29,11 @@ int main( void )
 	return 0;
 }
 
-/*
+/* expected output:
 a = 3, b = 2
 min(a, b) = 2
 max(a, b) = 3
 c = chaine2, d = chaine1
 min(c, d) = chaine1
 max(c, d) = chaine2
-
 */
