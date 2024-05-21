@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 19:39:13 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/21 03:16:25 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/21 16:42:14 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void ft_addition1(T& input)
 	return;
 }
 
-template <typename T, typename F> 
-void iter(T* array, int length, F ft_func)
+template <typename T> 
+void iter(T* array, int length, void ft_func(T &array))
 {
     int i = 0;
 	while (i < length)
