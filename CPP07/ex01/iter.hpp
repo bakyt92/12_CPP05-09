@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 19:39:13 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/20 20:51:08 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/21 03:16:25 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,27 @@
 #include <iostream>
 
 template <typename T>
-void ft_myltiplier2(T&)
+void ft_myltiplier2(T& input)
 {
-	T = T * 2;
+	input = input * 2;
 	return;
 }
 
 template <typename T>
-void ft_addition1(T&)
+void ft_addition1(T& input)
 {
-	T = T + 1;
+	input = input + 1;
 	return;
 }
 
-template <typename T> 
-void iter(T &array, int length, void (*ft_func)(T&))
+template <typename T, typename F> 
+void iter(T* array, int length, F ft_func)
 {
     int i = 0;
 	while (i < length)
 	{
-		std::cout << ft_func(array[i]) << std::endl;
+		ft_func(array[i]);
+		std::cout << array[i] << std::endl;
 		i++;
 	}
 	return ;

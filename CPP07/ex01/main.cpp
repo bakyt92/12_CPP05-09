@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 19:39:17 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/20 20:52:12 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/21 03:18:23 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int main()
 {
-	int array[5] = {1, 2, 3, 4, 5};
-	::iter(array, 5, ft_myltiplier2);
+	int array[5] = {1, 2, 3, 4, 11};
+	// ::iter(array, 5, ft_myltiplier2);
+	::iter<int, void(*)(int&)>(array, 5, ft_myltiplier2);
 	return 0;
 }
