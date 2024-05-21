@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:47:23 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/21 18:08:48 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/21 19:14:38 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 #include <iostream>
 #include <exception>
 #include <string>
+#include <cstdlib>
+#include <time.h>
 
-class OffLimits : public std::exception
+class OffLimitsException : public std::exception
 {
 	public:
-		virtual const char* what() const noexcept override {
+		virtual const char* what() const throw() {
         	return "Data in pointer is out of limits";
     }			
 };
@@ -46,28 +48,39 @@ public:
 		int i = 0;
 		while (i < this->_size)
 		{
-			src._data[i] = this->data;
+			this->_data[i] = src._data[i];
 			i++;
 		}
 	}
 
-	Array<T>& operator=(Array<T> &rhs const)
+	Array<T>& operator=(const Array<T> &rhs)
 	{
 		std::cout << "Copy assignment operator for class Array is called" << std::endl;
-		if (rhs != this)
+		if (&rhs != this)
 		{
+			delete [] _data;
 			this->_size = rhs._size;
-			this->_data = new T[rhs.size];
+			this->_data = new T[this->_size];
 			int i = 0;
 			while (i < this->_size)
 			{
-				src._data[i] = this->data;
+				this->_data[i] = rhs._data[i];
+				std::cout << "From data " << rhs._data[i] << " copy to this->data " << this->_data[i] << std::endl;
 				i++;
 			}
 		}
 		return *this;
 	}
 	
+	int size(void) {
+		return (this->_size);
+	}
+
+	T& operator[](int i) const {
+		if (i < 0 || i > this->_size)
+			throw OffLimitsException();
+		return this->_data[i];
+	}
 
 	~Array() {
 		delete [] _data;

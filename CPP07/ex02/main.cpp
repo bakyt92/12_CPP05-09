@@ -6,14 +6,13 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:46:51 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/21 17:12:51 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/05/21 19:25:19 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "Array.hpp"
 
-#define MAX_VAL 750
+#define MAX_VAL 5
 int main(int, char**)
 {
     Array<int> numbers(MAX_VAL);
@@ -26,8 +25,13 @@ int main(int, char**)
         mirror[i] = value;
     }
     //SCOPE
+    /*
+    If we write Array<int> tmp = numbers - we call copy constructor (we create and assign in the same time)
+    If we write as below - we call copy assignment operator becase "tmp" is already created
+    */
     {
-        Array<int> tmp = numbers;
+        Array<int> tmp;
+        tmp = numbers;
         Array<int> test(tmp);
     }
 
@@ -36,14 +40,18 @@ int main(int, char**)
         if (mirror[i] != numbers[i])
         {
             std::cerr << "didn't save the same value!!" << std::endl;
+            std::cout << "Mirror: " << mirror[i] << std::endl;
+            std::cout << "Numbers: " << numbers[i] << std::endl;
             return 1;
         }
     }
+    
+    /* ERRORS are generated because of try - catch blocks */
     try
     {
         numbers[-2] = 0;
     }
-    catch(const std::exception& e)
+    catch(const OffLimitsException& e)
     {
         std::cerr << e.what() << '\n';
     }
@@ -51,7 +59,7 @@ int main(int, char**)
     {
         numbers[MAX_VAL] = 0;
     }
-    catch(const std::exception& e)
+    catch(const OffLimitsException& e)
     {
         std::cerr << e.what() << '\n';
     }
