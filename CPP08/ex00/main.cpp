@@ -6,7 +6,13 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 19:41:42 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/07/04 19:45:29 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:47:39 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "easyfind.hpp"
+
+int main ()
+{
+	return 0;
+}
