@@ -5,15 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 12:07:43 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/31 12:09:28 by ufitzhug         ###   ########.fr       */
+/*   Created: 2024/07/04 19:41:38 by ufitzhug          #+#    #+#             */
+/*   Updated: 2024/07/04 19:45:18 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EASYFIND_HPP
-#define EASYFIND_HPP
-
-
-
-
-#endif EASYFIND_HPP
