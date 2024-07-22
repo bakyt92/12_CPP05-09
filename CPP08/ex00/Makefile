@@ -6,11 +6,11 @@
 #    By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/04 19:40:45 by ufitzhug          #+#    #+#              #
-#    Updated: 2024/07/21 23:33:26 by ufitzhug         ###   ########.fr        #
+#    Updated: 2024/07/22 19:55:44 by ufitzhug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_easyfind
+NAME = ex00
 
 SRC = main.cpp
 
