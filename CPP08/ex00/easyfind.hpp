@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 19:41:38 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/07/22 00:11:13 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/07/22 19:57:00 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <vector>
 #include <iostream>
 #include <exception>
-#include <sstream>
 
 class EasyException : public std::exception {
 	public:

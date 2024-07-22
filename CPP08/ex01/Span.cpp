@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:53:31 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/07/22 19:55:11 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/07/22 20:02:17 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ class NotSufficientException : public std::exception {
     }
 };
 
-void Span::addnumber(int x)
+void Span::addNumber(int x)
 {
 	if (_list.size() > _i)
 		throw QuantityException();
@@ -74,10 +74,10 @@ int Span::shortestSpan()
 	it = _list.begin();
 	it2 = _list.begin();
 	++it2;
-	int res = (*it2 - *it);
+	int res = std::abs(*it2 - *it);
 	while (it2 != _list.end())
 	{
-		res = std::min(res, (*it2 - *it));
+		res = std::min(res, std::abs(*it2 - *it));
 		++it2;
 		++it;
 	}
@@ -93,10 +93,10 @@ int Span::longestSpan()
 	it = _list.begin();
 	it2 = _list.begin();
 	++it2;
-	int res = (*it2 - *it);
+	int res = std::abs(*it2 - *it);
 	while (it2 != _list.end())
 	{
-		res = std::max(res, (*it2 - *it));
+		res = std::max(res, std::abs(*it2 - *it));
 		++it2;
 		++it;
 	}

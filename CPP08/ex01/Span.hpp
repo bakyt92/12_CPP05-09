@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:53:35 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/07/22 18:56:48 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/07/22 19:58:52 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ public:
 	Span& operator=(const Span &rhs);
 	~Span();
 
-	void addnumber(int x);
+	void addNumber(int x);
 	int shortestSpan();
 	int longestSpan();
 };
