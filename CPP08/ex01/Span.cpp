@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:53:31 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/07/22 20:02:17 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/07/22 23:55:15 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,13 @@ class NotSufficientException : public std::exception {
 
 void Span::addNumber(int x)
 {
-	if (_list.size() > _i)
+	if (_list.size() >= _i)
 		throw QuantityException();
-	std::list<int>::iterator it;
-	it = _list.begin();
-	_list.insert(it, x);
-	return ;
+	// std::list<int>::iterator it;
+	_list.push_back(x);
+	// it = _list.begin();
+	// _list.insert(it, x);
+	// return ;
 }
 
 int Span::shortestSpan()
