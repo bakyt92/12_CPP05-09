@@ -5,16 +5,16 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/07/22 17:53:28 by ufitzhug          #+#    #+#              #
-#    Updated: 2024/08/05 22:47:39 by ufitzhug         ###   ########.fr        #
+#    Created: 2024/08/05 22:47:18 by ufitzhug          #+#    #+#              #
+#    Updated: 2024/08/05 22:48:13 by ufitzhug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex01
+NAME = ex02
 
-SRC = main.cpp Span.cpp
+SRC = main.cpp
 
-HEADER = Span.hpp
+HEADER = MutantStack.hpp
 
 OBJ = $(SRC:%.cpp= %.o)
 
