@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 22:47:15 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/05 23:10:13 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/06 22:49:37 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ int main()
 		++it;
 	}
 	std::stack<int> s(mstack);
-	return;
+	return 0;
 }
