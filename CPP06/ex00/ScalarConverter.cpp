@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:11:10 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/20 17:10:25 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/08 22:19:59 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,43 +22,12 @@ ScalarConverter::~ScalarConverter()
 	std::cout << "ScalarConverver destructor is called" << std::endl;
 }
 
-void ScalarConverter::Convert(std::string input)
-{
-	if (CheckInput(input) == false)
-		{
-			std::cout << "Please input correct type of data (Char, Int, Float, Double)" << std::endl;
-		}
-	else 
-	{
-		ConvertToChar(input);
-		ConvertToInt(input);
-		ConvertToFloat(input);
-		ConvertToDouble(input);
-	}
-	return ;
-}
-
-/* CheckInput verifies that input is either char / int / double or float */
-bool ScalarConverter::CheckInput(std::string input)
-{
-	if (IsPrintableChar(input) == true)
-		return true;
-	else if (IsInteger(input) == true)
-		return true;
-	else if (IsDouble(input) == true)
-		return true;
-	else if (IsFloat(input) == true)
-		return true;
-	else 
-		return false;
-}
-
-bool ScalarConverter::IsInteger(const std::string &str)
+static bool IsInteger(const std::string &str)
 {
     return str.find_first_not_of("-+0123456789") == std::string::npos;
 }
 
-bool ScalarConverter::IsPrintableChar(const std::string &str)
+static bool IsPrintableChar(const std::string &str)
 {
 	if (str.size() == 1)
 	{
@@ -68,7 +37,7 @@ bool ScalarConverter::IsPrintableChar(const std::string &str)
 	return false;
 }
 
-bool ScalarConverter::IsDouble(const std::string &str)
+static bool IsDouble(const std::string &str)
 {
 	if (str == "-inf" || str == "+inf" || str == "nan")
 		return true;
@@ -93,7 +62,7 @@ bool ScalarConverter::IsDouble(const std::string &str)
 }
 
 
-bool ScalarConverter::IsFloat(const std::string &str)
+static bool IsFloat(const std::string &str)
 {
 	if (str == "-inff" || str == "+inff" || str == "nanf")
 		return true;
@@ -121,7 +90,7 @@ bool ScalarConverter::IsFloat(const std::string &str)
 	return false; 	
 }
 
-void ScalarConverter::ConvertToChar(const std::string &str)
+static void ConvertToChar(const std::string &str)
 {
 	if (str == "+inff" || str == "-inff" || str == "nanf" \
 		|| str == "+inf" || str == "-inf" || str == "nan")
@@ -162,7 +131,7 @@ void ScalarConverter::ConvertToChar(const std::string &str)
 	}
 }
 	
-void ScalarConverter::ConvertToInt(const std::string &str)
+static void ConvertToInt(const std::string &str)
 {
 	if (str == "+inff" || str == "-inff" || str == "nanf" \
 		|| str == "+inf" || str == "-inf" || str == "nan")
@@ -186,7 +155,7 @@ void ScalarConverter::ConvertToInt(const std::string &str)
 	}
 }
 	
-void ScalarConverter::ConvertToFloat(const std::string &str)
+static void ConvertToFloat(const std::string &str)
 {
 	if (str == "nan" || str == "+inf" || str == "-inf")
 			std::cout << "Float: " << str << "f" << std::endl;
@@ -208,7 +177,7 @@ void ScalarConverter::ConvertToFloat(const std::string &str)
 	return ;
 }
 	
-void ScalarConverter::ConvertToDouble(const std::string &str)
+static void ConvertToDouble(const std::string &str)
 {
 	if (str == "nan" || str == "+inf" || str == "-inf")
 			std::cout << "Double: " << str << std::endl;
@@ -231,3 +200,33 @@ void ScalarConverter::ConvertToDouble(const std::string &str)
 	return ;
 }
 
+/* CheckInput verifies that input is either char / int / double or float */
+static bool CheckInput(std::string input)
+{
+	if (IsPrintableChar(input) == true)
+		return true;
+	else if (IsInteger(input) == true)
+		return true;
+	else if (IsDouble(input) == true)
+		return true;
+	else if (IsFloat(input) == true)
+		return true;
+	else 
+		return false;
+}
+
+void ScalarConverter::Convert(std::string input)
+{
+	if (CheckInput(input) == false)
+		{
+			std::cout << "Please input correct type of data (Char, Int, Float, Double)" << std::endl;
+		}
+	else 
+	{
+		ConvertToChar(input);
+		ConvertToInt(input);
+		ConvertToFloat(input);
+		ConvertToDouble(input);
+	}
+	return ;
+}

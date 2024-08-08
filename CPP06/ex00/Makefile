@@ -6,11 +6,11 @@
 #    By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 20:01:45 by ufitzhug          #+#    #+#              #
-#    Updated: 2024/05/18 21:10:13 by ufitzhug         ###   ########.fr        #
+#    Updated: 2024/08/08 22:24:22 by ufitzhug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ScalarConverter 
+NAME = Convert 
 
 SRC = main.cpp ScalarConverter.cpp
 

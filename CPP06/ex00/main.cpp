@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:43:29 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/18 14:44:39 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/08 22:26:47 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int main (int argc, char ** argv)
 	}
 	else
 	{
-		ScalarConverter a;
-		a.Convert(argv[1]);
+		ScalarConverter::Convert(argv[1]);
 	}
 	return 0;
 }
