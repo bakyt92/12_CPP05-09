@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 02:29:51 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/19 02:53:55 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/08 22:31:08 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 Serializer::Serializer(/* args */)
 {
+    
 }
 
 Serializer::~Serializer()
