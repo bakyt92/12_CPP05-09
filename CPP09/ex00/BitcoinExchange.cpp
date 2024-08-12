@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:34 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/12 22:46:59 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/12 23:02:30 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool BitcoinExchange::read_db(std::string data1)
 	std::fstream db_data(data1, std::fstream::in);
 	if (db_data.is_open())
 	{
-		std::cout << "File is opened successfully" << std::endl;
+		std::cout << "Database is opened successfully" << std::endl;
 		std::string line;
 		size_t divider;
 		std::getline(db_data, line);
@@ -32,9 +32,9 @@ bool BitcoinExchange::read_db(std::string data1)
 	else
 	{
 		std::cerr << "Error with opening file" << std::endl;
+		return 1;
 	}
-
-	return;
+	return 0;
 }
 
 BitcoinExchange::BitcoinExchange(std::string input): address(input)
@@ -58,7 +58,7 @@ void BitcoinExchange::exec(std::string address)
 	std::fstream file1(address, std::fstream::in);
 	if (file1.is_open())
 	{
-		std::cout << "File is opened successfully" << std::endl;
+		std::cout << "File of input is opened successfully" << std::endl;
 
 	}
 	else
