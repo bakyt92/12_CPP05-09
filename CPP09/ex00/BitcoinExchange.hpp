@@ -6,9 +6,11 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:37 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/08 23:14:19 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/12 22:44:57 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#define DATABASE "./data.csv"
 
 #ifndef BITCOINEXCHANGE_HPP
 #define BITCOINEXCHANGE_HPP
@@ -16,26 +18,20 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <map>
 
 class BitcoinExchange
 {
 private:
-	/* data */
+	std::string address;
+	BitcoinExchange();
+	std::map<std::string, float> btc_db;
 public:
-	BitcoinExchange(/* args */);
+	BitcoinExchange(std::string input);
+	void exec(std::string address);
+	bool read_db(std::string data1);
 	~BitcoinExchange();
-	void exec_file(std::string line);
 };
-
-BitcoinExchange::BitcoinExchange(/* args */)
-{
-	std::cout << "BitcoinExchange constructor is called" << std::endl;
-}
-
-BitcoinExchange::~BitcoinExchange()
-{
-	std::cout << "BitcoinExchange destructor is called" << std::endl;
-}
 
 
 #endif
