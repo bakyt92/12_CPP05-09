@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:37 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/12 22:44:57 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/14 22:23:25 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ public:
 	~BitcoinExchange();
 };
 
+void validate_date(std::string date);
+void validate_value(std::string value);
 
 #endif

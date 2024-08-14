@@ -6,11 +6,25 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:34 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/12 23:02:30 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/14 22:26:23 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+
+void validate_date(std::string date)
+{
+	size_t delim1 = date.find('-');
+	int year = std::stoi(date.substr(0, delim1));
+	
+	return;
+}
+
+void validate_value(std::string value)
+{
+
+}
+
 
 bool BitcoinExchange::read_db(std::string data1)
 {
@@ -59,7 +73,18 @@ void BitcoinExchange::exec(std::string address)
 	if (file1.is_open())
 	{
 		std::cout << "File of input is opened successfully" << std::endl;
-
+		std::string line;
+		std::getline(file1, line);
+		while (std::getline(file1, line))
+		{
+			size_t delim = line.find('|');
+			if  (delim == std::string::npos || (delim + 2) < line.size())
+				std::cerr << "Error. Wrong data " << "in line: " << line << std::endl;
+			std::string date = line.substr(0, delim);
+			std::string val = line.substr(delim + 1);
+			validate_date(date);
+			validate_value(val);
+		}
 	}
 	else
 	{
