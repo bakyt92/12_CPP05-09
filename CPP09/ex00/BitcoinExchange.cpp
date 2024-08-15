@@ -6,18 +6,37 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:34 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/14 22:26:23 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/15 21:51:10 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-void validate_date(std::string date)
+bool validate_date(std::string date)
 {
 	size_t delim1 = date.find('-');
 	int year = std::stoi(date.substr(0, delim1));
-	
-	return;
+	if (year < 2009 || year > 2022 || delim1 == std::string::npos)
+	{
+		std::cerr << "Error. Wrong year" << std::endl;
+		return (1);
+	}
+	date.erase(0, delim1);
+	size_t delim1 = date.find('-');
+	int month = std::stoi(date.substr(0, delim1));
+	if (month < 1 || month > 12 || delim1 == std::string::npos)
+	{
+		std::cerr << "Error. Wrong month" << std::endl;
+		return (1);
+	}
+	date.erase(0, delim1);
+	int day = std::stoi(date);
+	if (day > 31)
+	{
+		std::cerr << "Error. Wrong month" << std::endl;
+		return (1);
+	}
+	return(0);
 }
 
 void validate_value(std::string value)

@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 02:29:48 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/19 02:55:48 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/15 19:39:49 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 #define SERIALIZER_HPP
 
 #include <iostream>
-#include <cstdint>
+// #include <cstdint>
+#include <cstddef> // for std::size_t
+typedef std::size_t uintptr_t;
 
 struct Data {
     int i;
