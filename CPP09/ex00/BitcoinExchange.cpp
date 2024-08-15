@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:34 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/15 21:51:10 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/15 22:00:27 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ bool validate_date(std::string date)
 	}
 	date.erase(0, delim1);
 	int day = std::stoi(date);
+	int day_q[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	
 	if (day > 31)
 	{
 		std::cerr << "Error. Wrong month" << std::endl;
