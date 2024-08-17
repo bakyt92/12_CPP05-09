@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:34 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/17 18:00:47 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/17 22:17:41 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,62 @@
 
 bool validate_date(std::string date)
 {
+	if (date.length() != 10)
+		return false;
 	size_t delim1 = date.find('-');
-	int year = std::stoi(date.substr(0, delim1));
+	int year = std::stoi(date.substr(0, delim1 + 1));
 	if (year < 2009 || year > 2022 || delim1 == std::string::npos)
 	{
 		std::cerr << "Error. Wrong year" << std::endl;
-		return (1);
+		return false;
 	}
-	date.erase(0, delim1);
-	size_t delim1 = date.find('-');
-	int month = std::stoi(date.substr(0, delim1));
+	size_t delim2 = date.find('-', delim1 + 1);
+	int month = std::stoi(date.substr(delim1 + 1, delim2 - delim1 - 1));
 	if (month < 1 || month > 12 || delim1 == std::string::npos)
 	{
 		std::cerr << "Error. Wrong month" << std::endl;
-		return (1);
+		return false;
 	}
 	if (year == 2022 && month > 3)
 	{
-		std::cerr << "Date in 2022 is later than last available date" << std::endl;
-		return (1);
+		std::cerr << "Provided date in 2022 is later than last available date" << std::endl;
+		return false;
 	}
-	date.erase(0, delim1);
-	int day = std::stoi(date);
-	if (year % 4 != 0)
-		int day_q[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	else
-		int day_q[12] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	if (day > day_q[month-1])
+	int day = std::stoi(date.substr(delim2 + 1));
+	int day_q[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	if (year % 4 == 0)
+		int day_q[1] = {28};
+	if (day > day_q[month-1] || day < 1)
 	{
 		std::cerr << "Error. Wrong quantity of days in month" << std::endl;
-		return (1);
+		return false;
 	}
-	
-	return(0);
+	if (date.length() != delim2 + 1 + std::to_string(day).length()) { // verify that is works with cstd98
+        std::cerr << "Error. Invalid date format" << std::endl;
+        return false;
+    }
+	return true;
 }
 
-void validate_value(std::string value)
+bool validate_value(std::string value)
 {
-
+	try {
+		size_t position;
+		double val = std::stod(value,&position);
+		if (position != value.length())
+		{
+			throw std::invalid_argument("Invalid input");
+		}
+	}
+	catch (const std::invalid_argument& e) {
+		std::cerr << "Error" << e.what() << std::endl;
+		return false;
+	}
+	catch (const std::out_of_range& e) {
+		std::cerr << "Error: out of range"  << std::endl;
+		return false;
+	}
+	return true;
 }
 
 
@@ -118,5 +136,6 @@ void BitcoinExchange::exec(std::string address)
 	else
 	{
 		std::cerr << "Error with opening file" << std::endl;
+		return;
 	}
 }

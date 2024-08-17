@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:37 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/15 21:39:31 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/17 21:29:04 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ public:
 };
 
 bool validate_date(std::string date);
-void validate_value(std::string value);
+bool validate_value(std::string value);
 
 #endif
