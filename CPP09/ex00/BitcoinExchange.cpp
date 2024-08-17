@@ -6,11 +6,21 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:34 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/17 22:25:34 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/17 23:00:26 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+
+std::string ft_decrease_date(const std::string &curDate)
+{
+	size_t delim1 = curDate.find('-');
+	size_t delim2 = curDate.find('-', delim1 + 1);
+	int year = std::stoi(curDate.substr(0, delim1));
+	int month = std::stoi(curDate.substr(delim1 + 1, delim2 - delim1 + 1));
+	int day = std::stoi(curDate.substr(delim2 + 1));
+	
+}
 
 bool validate_date(std::string date)
 {
@@ -135,7 +145,17 @@ void BitcoinExchange::exec(std::string address)
 			std::string val = line.substr(delim + 1);
 			if (validate_date(date) == false || validate_value(val) == false)
 				return;
+			std::map<std::string, float>::iterator iter;
+			std::string previousDate = date;
+			iter = this->btc_db.find(date);
+			while (iter == this->btc_db.end())
+			{
+				std::string currentDate = previousDate;
+				previousDate = ft_decrease_date(currentDate);
+				iter = this->btc_db.find(previousDate);
+			}
 		}
+
 	}
 	else
 	{

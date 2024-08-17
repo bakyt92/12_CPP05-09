@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:37 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/17 21:29:04 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/17 23:00:35 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ public:
 
 bool validate_date(std::string date);
 bool validate_value(std::string value);
+std::string ft_decrease_date(const std::string &curDate);
 
 #endif
