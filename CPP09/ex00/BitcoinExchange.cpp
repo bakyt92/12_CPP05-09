@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:34 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/17 22:17:41 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/17 22:25:34 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ bool validate_value(std::string value)
 		if (position != value.length())
 		{
 			throw std::invalid_argument("Invalid input");
+		}
+		if (val < 0)
+		{
+			throw std::invalid_argument("Invalid input:Negative number");
 		}
 	}
 	catch (const std::invalid_argument& e) {
@@ -129,8 +133,8 @@ void BitcoinExchange::exec(std::string address)
 				std::cerr << "Error. Wrong data " << "in line: " << line << std::endl;
 			std::string date = line.substr(0, delim);
 			std::string val = line.substr(delim + 1);
-			validate_date(date);
-			validate_value(val);
+			if (validate_date(date) == false || validate_value(val) == false)
+				return;
 		}
 	}
 	else
