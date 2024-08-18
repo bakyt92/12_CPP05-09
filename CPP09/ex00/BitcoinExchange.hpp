@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:37 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/17 23:00:35 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/18 22:58:34 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <fstream>
 #include <string>
 #include <map>
+#include <sstream>
 
 class BitcoinExchange
 {

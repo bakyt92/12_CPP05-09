@@ -6,11 +6,19 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:34 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/17 23:00:26 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/18 23:01:03 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+
+std::string ft_itos(int val)
+{
+	std::stringstream str_stream;
+	str_stream << val;
+	return (str_stream.str());
+}
+
 
 std::string ft_decrease_date(const std::string &curDate)
 {
@@ -19,7 +27,23 @@ std::string ft_decrease_date(const std::string &curDate)
 	int year = std::stoi(curDate.substr(0, delim1));
 	int month = std::stoi(curDate.substr(delim1 + 1, delim2 - delim1 + 1));
 	int day = std::stoi(curDate.substr(delim2 + 1));
-	
+	int day_q[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	if (year % 4 == 0)
+		int day_q[1] = {28};
+	if (day == 1 && month == 1)
+	{
+		year--;
+		month = 12;
+		day = 31;
+	}
+	else if (day == 1)
+	{
+		--month;
+		day = day_q[month];
+	}
+	else 
+		--day;
+	return (ft_itos(year) + '-' + ft_itos(month) + '-' + ft_itos(day));
 }
 
 bool validate_date(std::string date)
@@ -155,7 +179,6 @@ void BitcoinExchange::exec(std::string address)
 				iter = this->btc_db.find(previousDate);
 			}
 		}
-
 	}
 	else
 	{
