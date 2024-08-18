@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:47:23 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/21 19:14:38 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/18 19:58:10 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ public:
 		std::cout << "Copy assignment operator for class Array is called" << std::endl;
 		if (&rhs != this)
 		{
-			delete [] _data;
+			delete _data;
 			this->_size = rhs._size;
 			this->_data = new T[this->_size];
 			int i = 0;
@@ -77,7 +77,7 @@ public:
 	}
 
 	T& operator[](int i) const {
-		if (i < 0 || i > this->_size)
+		if (i < 0 || i >= this->_size)
 			throw OffLimitsException();
 		return this->_data[i];
 	}

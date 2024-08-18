@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 19:08:22 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/05/20 19:28:15 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/18 19:47:27 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,4 @@ c = chaine2, d = chaine1
 min(c, d) = chaine1
 max(c, d) = chaine2
 */
+
