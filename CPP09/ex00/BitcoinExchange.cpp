@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:34 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/18 23:01:03 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/19 00:08:06 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,8 @@ void BitcoinExchange::exec(std::string address)
 				previousDate = ft_decrease_date(currentDate);
 				iter = this->btc_db.find(previousDate);
 			}
+			std::cout << date << " =>>> " << val << " " << std::stof(val) * iter->second << std::endl;
+			file1.close();
 		}
 	}
 	else
