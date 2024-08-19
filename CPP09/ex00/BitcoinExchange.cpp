@@ -6,13 +6,29 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:34 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/19 00:08:06 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/19 23:30:50 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-std::string ft_itos(int val)
+float ft_stof (const std::string &str)
+{
+	std::stringstream str_stream(str);
+	float num;
+	str_stream >> num;
+	return num;
+}
+
+int ft_stoi (const std::string &str)
+{
+	std::stringstream str_stream(str);
+	int num;
+	str_stream >> num;
+	return num;
+}
+
+std::string ft_itos(const int &val)
 {
 	std::stringstream str_stream;
 	str_stream << val;
@@ -24,12 +40,12 @@ std::string ft_decrease_date(const std::string &curDate)
 {
 	size_t delim1 = curDate.find('-');
 	size_t delim2 = curDate.find('-', delim1 + 1);
-	int year = std::stoi(curDate.substr(0, delim1));
-	int month = std::stoi(curDate.substr(delim1 + 1, delim2 - delim1 + 1));
-	int day = std::stoi(curDate.substr(delim2 + 1));
+	int year = ft_stoi(curDate.substr(0, delim1));
+	int month = ft_stoi(curDate.substr(delim1 + 1, delim2 - delim1 + 1));
+	int day = ft_stoi(curDate.substr(delim2 + 1));
 	int day_q[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	if (year % 4 == 0)
-		int day_q[1] = {28};
+		day_q[1] = 29;
 	if (day == 1 && month == 1)
 	{
 		year--;
@@ -51,14 +67,14 @@ bool validate_date(std::string date)
 	if (date.length() != 10)
 		return false;
 	size_t delim1 = date.find('-');
-	int year = std::stoi(date.substr(0, delim1 + 1));
+	int year = ft_stoi(date.substr(0, delim1 + 1));
 	if (year < 2009 || year > 2022 || delim1 == std::string::npos)
 	{
 		std::cerr << "Error. Wrong year" << std::endl;
 		return false;
 	}
 	size_t delim2 = date.find('-', delim1 + 1);
-	int month = std::stoi(date.substr(delim1 + 1, delim2 - delim1 - 1));
+	int month = ft_stoi(date.substr(delim1 + 1, delim2 - delim1 - 1));
 	if (month < 1 || month > 12 || delim1 == std::string::npos)
 	{
 		std::cerr << "Error. Wrong month" << std::endl;
@@ -69,16 +85,16 @@ bool validate_date(std::string date)
 		std::cerr << "Provided date in 2022 is later than last available date" << std::endl;
 		return false;
 	}
-	int day = std::stoi(date.substr(delim2 + 1));
+	int day = ft_stoi(date.substr(delim2 + 1));
 	int day_q[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	if (year % 4 == 0)
-		int day_q[1] = {28};
+		day_q[1] = 29;
 	if (day > day_q[month-1] || day < 1)
 	{
 		std::cerr << "Error. Wrong quantity of days in month" << std::endl;
 		return false;
 	}
-	if (date.length() != delim2 + 1 + std::to_string(day).length()) { // verify that is works with cstd98
+	if (date.length() != delim2 + 1 + ft_itos(day).length()) { // verify that is works with cstd98
         std::cerr << "Error. Invalid date format" << std::endl;
         return false;
     }
@@ -88,8 +104,8 @@ bool validate_date(std::string date)
 bool validate_value(std::string value)
 {
 	try {
-		size_t position;
-		double val = std::stod(value,&position);
+		size_t position = 0;
+		float val = ft_stof(value);
 		if (position != value.length())
 		{
 			throw std::invalid_argument("Invalid input");
@@ -113,7 +129,7 @@ bool validate_value(std::string value)
 
 bool BitcoinExchange::read_db(std::string data1)
 {
-	std::fstream db_data(data1, std::fstream::in);
+	std::fstream db_data(data1.c_str(), std::fstream::in);
 	if (db_data.is_open())
 	{
 		std::cout << "Database is opened successfully" << std::endl;
@@ -124,7 +140,7 @@ bool BitcoinExchange::read_db(std::string data1)
 		{
 			divider = line.find(',');
 			std::string rate = line.substr(divider + 1);
-			this->btc_db[line.substr(0, divider)] = std::stof(rate);
+			this->btc_db[line.substr(0, divider)] = ft_stof(rate);
 		}
 		db_data.close();
 	}
@@ -154,7 +170,7 @@ void BitcoinExchange::exec(std::string address)
 		std::cerr << "Error with opening Database" << std::endl;
 		return;
 	}
-	std::fstream file1(address, std::fstream::in);
+	std::fstream file1(address.c_str(), std::fstream::in);
 	if (file1.is_open())
 	{
 		std::cout << "File of input is opened successfully" << std::endl;
@@ -178,7 +194,7 @@ void BitcoinExchange::exec(std::string address)
 				previousDate = ft_decrease_date(currentDate);
 				iter = this->btc_db.find(previousDate);
 			}
-			std::cout << date << " =>>> " << val << " " << std::stof(val) * iter->second << std::endl;
+			std::cout << date << " =>>> " << val << " " << ft_stof(val) * iter->second << std::endl;
 			file1.close();
 		}
 	}
