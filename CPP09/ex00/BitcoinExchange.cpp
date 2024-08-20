@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:34 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/20 03:30:59 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/20 03:54:07 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ std::string ft_itos(const int &val)
 {
 	std::stringstream str_stream;
 	str_stream << val;
-	return (str_stream.str());
+	if (val > 9)
+		return (str_stream.str());
+	else 
+		return ('0' + str_stream.str());
 }
-
 
 std::string ft_decrease_date(const std::string &curDate)
 {
@@ -59,6 +61,8 @@ std::string ft_decrease_date(const std::string &curDate)
 	}
 	else 
 		--day;
+	// std::cout << "Check 1 " << std::endl;
+	// std::cout << ft_itos(year) + '-' + ft_itos(month) + '-' + ft_itos(day) << std::endl;
 	return (ft_itos(year) + '-' + ft_itos(month) + '-' + ft_itos(day));
 }
 
@@ -99,8 +103,8 @@ bool validate_date(std::string date)
 		std::cerr << "Error. Wrong quantity of days in month" << std::endl;
 		return false;
 	}
-	if (date.length() != (delim2 + 2 + ft_itos(day).length())) { // verify that is works with cstd98
-        std::cerr << "date length " << date.length() << " is not equal to " << delim2 << " + " << ft_itos(day).length() << std::endl;
+	if (date.length() != (delim2 + 3)) { // verify that is works with cstd98
+        std::cerr << date << " date length " << date.length() << " is not equal to " << delim2 << " + 1 + " << ft_itos(day).length() << std::endl;
 		std::cerr << "Error. Invalid date format" << std::endl;
         return false;
     }
@@ -119,6 +123,10 @@ bool validate_value(std::string value)
 		if (val < 0)
 		{
 			throw std::invalid_argument("Invalid input:Negative number");
+		}
+		else if (val > 1000)
+		{
+			throw std::invalid_argument("Invalid input: Out of range");
 		}
 	}
 	catch (const std::invalid_argument& e) {
@@ -211,7 +219,7 @@ void BitcoinExchange::exec(std::string address)
 				previousDate = ft_decrease_date(currentDate);
 				iter = this->btc_db.find(previousDate);
 			}
-			std::cout << date << " =>>> " << val << " " << ft_stof(val) * iter->second << std::endl;
+			std::cout << date << " =>>> Quantity of BTC " << val << " =>>> Result: " << ft_stof(val) * iter->second << std::endl;
 		}
 		file1.close();
 	}
