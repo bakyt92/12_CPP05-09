@@ -66,6 +66,11 @@
 		"fstream": "cpp",
 		"iomanip": "cpp",
 		"list": "cpp",
-		"map": "cpp"
+		"map": "cpp",
+		"__hash_table": "cpp",
+		"__node_handle": "cpp",
+		"__split_buffer": "cpp",
+		"__tree": "cpp",
+		"stack": "cpp"
 	}
 }

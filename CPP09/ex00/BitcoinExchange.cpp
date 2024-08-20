@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:34 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/19 23:30:50 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/20 03:30:59 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,15 @@ std::string ft_decrease_date(const std::string &curDate)
 
 bool validate_date(std::string date)
 {
+	// std::cout << date << " size is " << date.length() << std::endl;
 	if (date.length() != 10)
-		return false;
+		{
+			std::cerr << "Wrong length of date" << std::endl;
+			return false;
+		}
 	size_t delim1 = date.find('-');
 	int year = ft_stoi(date.substr(0, delim1 + 1));
+	// std::cout << "Year check: " << date.substr(0, delim1 + 1) << std::endl;
 	if (year < 2009 || year > 2022 || delim1 == std::string::npos)
 	{
 		std::cerr << "Error. Wrong year" << std::endl;
@@ -94,8 +99,9 @@ bool validate_date(std::string date)
 		std::cerr << "Error. Wrong quantity of days in month" << std::endl;
 		return false;
 	}
-	if (date.length() != delim2 + 1 + ft_itos(day).length()) { // verify that is works with cstd98
-        std::cerr << "Error. Invalid date format" << std::endl;
+	if (date.length() != (delim2 + 2 + ft_itos(day).length())) { // verify that is works with cstd98
+        std::cerr << "date length " << date.length() << " is not equal to " << delim2 << " + " << ft_itos(day).length() << std::endl;
+		std::cerr << "Error. Invalid date format" << std::endl;
         return false;
     }
 	return true;
@@ -104,12 +110,12 @@ bool validate_date(std::string date)
 bool validate_value(std::string value)
 {
 	try {
-		size_t position = 0;
+		// size_t position = 0;
 		float val = ft_stof(value);
-		if (position != value.length())
-		{
-			throw std::invalid_argument("Invalid input");
-		}
+		// if (position != value.length())
+		// {
+		// 	throw std::invalid_argument("Invalid input");
+		// }
 		if (val < 0)
 		{
 			throw std::invalid_argument("Invalid input:Negative number");
@@ -146,10 +152,10 @@ bool BitcoinExchange::read_db(std::string data1)
 	}
 	else
 	{
-		std::cerr << "Error with opening file" << std::endl;
-		return 1;
+		std::cerr << "Error with opening file of DB" << std::endl;
+		return false;
 	}
-	return 0;
+	return true;
 }
 
 BitcoinExchange::BitcoinExchange(std::string input): address(input)
@@ -179,12 +185,23 @@ void BitcoinExchange::exec(std::string address)
 		while (std::getline(file1, line))
 		{
 			size_t delim = line.find('|');
-			if  (delim == std::string::npos || (delim + 2) < line.size())
-				std::cerr << "Error. Wrong data " << "in line: " << line << std::endl;
-			std::string date = line.substr(0, delim);
+			if  (delim == std::string::npos || delim == line.size() - 1)
+				{
+					std::cerr << "Error. Wrong data in line: " << line << std::endl;
+					continue;
+				}
+			std::string date = line.substr(0, delim - 1);
 			std::string val = line.substr(delim + 1);
-			if (validate_date(date) == false || validate_value(val) == false)
-				return;
+			if (validate_date(date) == false )
+				{
+					std::cerr << "Date Error with line " << line << std::endl;
+					continue;
+				}
+			if (validate_value(val) == false)
+			{
+				std::cerr << "Val error with line " << line << std::endl;
+				continue;
+			}
 			std::map<std::string, float>::iterator iter;
 			std::string previousDate = date;
 			iter = this->btc_db.find(date);
@@ -195,8 +212,8 @@ void BitcoinExchange::exec(std::string address)
 				iter = this->btc_db.find(previousDate);
 			}
 			std::cout << date << " =>>> " << val << " " << ft_stof(val) * iter->second << std::endl;
-			file1.close();
 		}
+		file1.close();
 	}
 	else
 	{
