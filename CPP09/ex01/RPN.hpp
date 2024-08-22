@@ -6,7 +6,20 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:02 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/06 22:59:04 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/22 21:03:31 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef RPH_HPP
+#define RPH_HPP
+
+class RPN
+{
+private:
+	/* data */
+public:
+	RPN(/* args */);
+	~RPN();
+};
+
+#endif

@@ -6,7 +6,17 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:48 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/06 22:58:49 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/22 21:04:48 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "RPN.hpp"
+
+int main (int argc, char **argv)
+{
+	if (argc == 1)
+	{
+		std::cerr << "Error. "
+	}
+	return 0;
+}

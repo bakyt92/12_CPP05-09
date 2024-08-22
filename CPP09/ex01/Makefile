@@ -6,7 +6,36 @@
 #    By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/06 22:58:51 by ufitzhug          #+#    #+#              #
-#    Updated: 2024/08/06 22:58:55 by ufitzhug         ###   ########.fr        #
+#    Updated: 2024/08/22 21:05:35 by ufitzhug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME = RPN
+
+SRC = main.cpp RPN.cpp
+
+HEADER = RPN.hpp
+
+OBJ = $(SRC:%.cpp= %.o)
+
+CFLAGS = -Wall -Wextra -Werror -std=c++98
+
+CC = c++
+
+all : $(NAME)
+
+$(NAME) : $(OBJ) $(HEADER)
+	$(CC) $(CFLAGS) -O2 $(OBJ) -o $(NAME)
+
+%.o	: %.cpp $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean	:
+	@rm -rf $(OBJ)
+
+fclean	:	clean
+	@rm -rf $(NAME)
+
+re	:	fclean all
+
+.PHONY : all clean fclean re 
