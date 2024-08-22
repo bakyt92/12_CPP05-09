@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:57 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/23 00:18:38 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/23 00:20:08 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ RPN::RPN(char* input)
 	this->line = ft_ctos(input);
 	if (ft_readline(this->line) == false)
 		return;
-	if (this->ops.size() < 1 || this->digits.size())
+	if (this->ops.size() < 1 || this->digits.size() < 2)
 	{
 		std::cerr << "Wrong number of agruments" << std::endl;
 		return;
