@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:57 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/23 00:20:08 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/23 00:24:56 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ RPN::RPN(char* input)
 		std::cerr << "Wrong number of digits and operations" << std::endl;
 		return;
 	}
-	
+	ft_execute();
 }
 
 RPN::~RPN()
@@ -85,4 +85,10 @@ bool RPN::ft_readline(std::string input_line)
 		}
 	}
 	return true;
+}
+
+void RPN::ft_execute(void)
+{
+	int tmp;
+	return;
 }
