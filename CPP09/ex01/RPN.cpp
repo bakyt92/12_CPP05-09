@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:57 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/23 00:24:56 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/23 22:17:14 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,15 @@ RPN::RPN(char* input)
 		std::cerr << "Wrong number of agruments" << std::endl;
 		return;
 	}
-	if (this->digits.size() == (this->ops.size() - 1))
+	if (this->digits.size() == (this->ops.size() + 1))
 		std::cout << "Correct number of digits and ops" << std::endl;
 	else 
 	{
 		std::cerr << "Wrong number of digits and operations" << std::endl;
 		return;
 	}
-	ft_execute();
+	std::cout << ft_execute() << std::endl;
+	return;
 }
 
 RPN::~RPN()
@@ -62,10 +63,11 @@ bool RPN::ft_readline(std::string input_line)
 		std::cerr << "Wrong symbols in the line" << std::endl;
 		return false;
 	}
-	int i = 0;
+	std::size_t i = 0;
 	std::string digs;
-	while (i <= input_line.size())
+	while (i < input_line.size())
 	{
+		std::cout << "size T === " << i << std::endl;
 		if (input_line[i] == ' ')
 			i++;
 		if (isdigit(input_line[i]))
@@ -76,19 +78,59 @@ bool RPN::ft_readline(std::string input_line)
 				i++;
 			}
 			this->digits.push(ft_stoi(digs));
+			std::cout << "PUSH int " << this->digits.top() << std::endl;
 			digs.clear();
 		}
 		if (input_line[i] == '*' || input_line[i] == '/' || input_line[i] == '+' || input_line[i] == '-')
 		{
 			this->ops.push(input_line[i]);
+			std::cout << "PUSH char to OPS: " << this->ops.top() << std::endl;
 			i++;	
 		}
 	}
 	return true;
 }
 
-void RPN::ft_execute(void)
+int RPN::ft_execute(void)
 {
-	int tmp;
-	return;
+	int tmp_res = this->digits.top();
+	std::cout << "First oper. Res is " << tmp_res << std::endl;
+	this->digits.pop();
+	while (this->digits.size() > 0)
+	{
+		switch (this->ops.top())
+		{
+		case '*':
+			tmp_res = tmp_res * this->digits.top();
+			std::cout << "operation *. Res is " << tmp_res << std::endl;
+			this->digits.pop();
+			this->ops.pop();
+			break;
+		case '+':
+			tmp_res = tmp_res + this->digits.top();
+			std::cout << "operation +. Res is " << tmp_res << std::endl;
+			this->digits.pop();
+			this->ops.pop();
+			break;
+		case '-':
+			tmp_res = tmp_res - this->digits.top();
+			std::cout << "operation -. Res is " << tmp_res << std::endl;
+			this->digits.pop();
+			this->ops.pop();
+			break;
+		case '/':
+			if (this->digits.top() == 0)
+				{
+					std::cerr << "Error. Division by 0 is impossible. Current res will be returned" << std::endl;
+					return (tmp_res);
+				}
+			else 
+				tmp_res = tmp_res / this->digits.top();
+			std::cout << "operation /. Res is " << tmp_res << std::endl;
+			this->digits.pop();
+			this->ops.pop();
+			break;
+		}
+	}
+	return (tmp_res);
 }
