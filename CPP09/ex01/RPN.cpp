@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:57 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/23 22:17:14 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/24 14:32:45 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,22 @@ RPN::RPN(char* input)
 {
 	std::cout << "RPN constructor is called" << std::endl;
 	this->line = ft_ctos(input);
+	this->res = INT_MIN;
 	if (ft_readline(this->line) == false)
 		return;
-	if (this->ops.size() < 1 || this->digits.size() < 2)
-	{
-		std::cerr << "Wrong number of agruments" << std::endl;
-		return;
-	}
-	if (this->digits.size() == (this->ops.size() + 1))
-		std::cout << "Correct number of digits and ops" << std::endl;
-	else 
-	{
-		std::cerr << "Wrong number of digits and operations" << std::endl;
-		return;
-	}
-	std::cout << ft_execute() << std::endl;
+	// if (this->digits.size() < 2)
+	// {
+	// 	std::cerr << "Wrong number of agruments" << std::endl;
+	// 	return;
+	// }
+	// if (this->digits.size() == (this->ops.size() + 1))
+	// 	std::cout << "Correct number of digits and ops" << std::endl;
+	// else 
+	// {
+	// 	std::cerr << "Wrong number of digits and operations" << std::endl;
+	// 	return;
+	// }
+	std::cout << "res is: " << this->res << std::endl;
 	return;
 }
 
@@ -67,7 +68,7 @@ bool RPN::ft_readline(std::string input_line)
 	std::string digs;
 	while (i < input_line.size())
 	{
-		std::cout << "size T === " << i << std::endl;
+		std::cout << "size T == " << i << std::endl;
 		if (input_line[i] == ' ')
 			i++;
 		if (isdigit(input_line[i]))
@@ -83,40 +84,46 @@ bool RPN::ft_readline(std::string input_line)
 		}
 		if (input_line[i] == '*' || input_line[i] == '/' || input_line[i] == '+' || input_line[i] == '-')
 		{
-			this->ops.push(input_line[i]);
-			std::cout << "PUSH char to OPS: " << this->ops.top() << std::endl;
-			i++;	
+			this->res = ft_execute(input_line[i]);
+			i++;
 		}
 	}
 	return true;
 }
 
-int RPN::ft_execute(void)
+int RPN::ft_execute(char c)
 {
-	int tmp_res = this->digits.top();
-	std::cout << "First oper. Res is " << tmp_res << std::endl;
-	this->digits.pop();
-	while (this->digits.size() > 0)
+	int tmp_res;		
+	if (this->res == INT_MIN)
 	{
-		switch (this->ops.top())
-		{
+		tmp_res = this->digits.top();
+		std::cout << "First oper. Res is " << tmp_res << std::endl;
+		this->digits.pop();	
+	}
+	else 
+	{
+		tmp_res = this->res;
+	}
+	switch (c)
+	{
 		case '*':
 			tmp_res = tmp_res * this->digits.top();
 			std::cout << "operation *. Res is " << tmp_res << std::endl;
 			this->digits.pop();
-			this->ops.pop();
+			// this->digits.push(tmp_res);
+			this->res = tmp_res;
 			break;
 		case '+':
 			tmp_res = tmp_res + this->digits.top();
 			std::cout << "operation +. Res is " << tmp_res << std::endl;
 			this->digits.pop();
-			this->ops.pop();
+			this->res = tmp_res;
 			break;
 		case '-':
 			tmp_res = tmp_res - this->digits.top();
 			std::cout << "operation -. Res is " << tmp_res << std::endl;
 			this->digits.pop();
-			this->ops.pop();
+			this->res = tmp_res;
 			break;
 		case '/':
 			if (this->digits.top() == 0)
@@ -128,9 +135,8 @@ int RPN::ft_execute(void)
 				tmp_res = tmp_res / this->digits.top();
 			std::cout << "operation /. Res is " << tmp_res << std::endl;
 			this->digits.pop();
-			this->ops.pop();
+			this->res = tmp_res;
 			break;
-		}
 	}
 	return (tmp_res);
 }

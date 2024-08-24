@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:02 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/23 21:31:03 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/24 14:27:02 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <string>
 #include <sstream>
 #include <stack>
+#include <climits>
 
 std::string ft_ctos(char *input);
 int ft_stoi(std::string input);
@@ -26,11 +27,11 @@ class RPN
 private:
 	std::string line;
 	std::stack<int> digits;
-	std::stack<char> ops;
+	int res;
 public:
 	RPN(char* input);
 	~RPN();
-	int ft_execute(void);
+	int ft_execute(char c);
 	bool ft_readline(std::string input_line);
 };
 
