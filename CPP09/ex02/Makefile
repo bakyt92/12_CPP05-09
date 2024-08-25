@@ -6,13 +6,13 @@
 #    By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/06 22:59:24 by ufitzhug          #+#    #+#              #
-#    Updated: 2024/08/25 19:43:21 by ufitzhug         ###   ########.fr        #
+#    Updated: 2024/08/25 20:19:41 by ufitzhug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_sort_containers
 
-SRC = main.cpp PmergeMe.cpp
+SRC = PmergeMe.cpp main.cpp
 
 HEADER = PmergeMe.hpp
 
