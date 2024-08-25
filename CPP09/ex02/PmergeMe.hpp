@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:18 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/25 16:04:23 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/25 17:55:37 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 template <typename Container>
 class PmergeMe {
 	private:
-		Container _data;
+		Container	_data;
+		value_type	_last;
+		double		_time;
 	public:
 		typedef typename Container::value_type	value_type;
 		typedef typename Container::size_type	size_type;
@@ -30,6 +32,9 @@ class PmergeMe {
 		~PmergeMe();
 		PmergeMe(const PmergeMe &src);
 		PmergeMe& operator= (const PmergeMe &rhs);
+		int		ft_stoi(char *input);
+		void	ft_print_all(void);
+		
 };
 
 #endif
