@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:21 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/25 19:26:20 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/25 19:58:52 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ template<typename Container>
 PmergeMe<Container>::PmergeMe (char **input)
 {
 	std::cout << "Constructor for instance PmergeMe is called" << std::endl;
-	_time = 0;
-	_last = -1;
+	// _time = 0;
+	// _last = -1;
 	size_t	i = 0;
 	while (input[i])
 	{
-		std::string str_input(input[i])
+		std::string str_input(input[i]);
 		if (str_input.find_first_not_of("0123456789") != std::string::npos)
 		{
 			std::cerr << "Wrong symbols in the line" << std::endl;
@@ -67,9 +67,9 @@ PmergeMe<Container>::~PmergeMe ()
 	std::cout << "Destructor for instance PmergeMe is called" << std::endl;
 }
 
-void	MergeInsertVec(std::vector<std::pair<int, int>>&container, const bool &odd,const int &tmp)
+void	MergeInsertVec(std::vector<std::pair<unsigned int, unsigned int> >&container, const bool &odd,const unsigned int &tmp)
 {
-	std::vector <int> low, high;
+	std::vector <unsigned int> low, high;
 	struct timeval start, end;
 	gettimeofday(&start, NULL);
 	long		sec, mic, timeTaken;
