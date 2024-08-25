@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:18 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/25 21:47:35 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/25 22:02:38 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ class PmergeMe {
 		PmergeMe& operator= (const PmergeMe &rhs);
 		int		ft_stoi(char *input);
 		void	ft_print_all(void);
-		
+		unsigned int get_container_data(int i);
 };
 
 
@@ -48,7 +48,7 @@ template<typename Container>
 int PmergeMe<Container>::ft_stoi(char *input)
 {
 	std::istringstream ss(input);
-	int num;
+	unsigned int num;
 	ss >> num;
 	return (num);
 }
@@ -64,7 +64,15 @@ void PmergeMe<Container>::ft_print_all(void)
 		i++;
 	}
 	std::cout << std::endl;
+	return;
 }
+
+template<typename Container>
+unsigned int PmergeMe<Container>::get_container_data(int i)
+{
+	return(this->_data[i]);
+}
+
 
 
 template<typename Container>
