@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:18 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/25 21:03:55 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/25 21:47:35 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ PmergeMe<Container>::PmergeMe (char **input)
 		}
 		i++;
 	}
-	for (int i = 0, i < _data.size(), i++)
 }
 
 template<typename Container>

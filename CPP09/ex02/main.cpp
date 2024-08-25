@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:27 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/25 20:52:25 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/25 21:50:02 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int main (int argc, char** argv)
     	}
 		
 		std::vector<std::pair<unsigned int, unsigned int> > vec;
-    	for ( int i = 1; i < argc; i+=2 )
+    	for ( int i = 0; i < argc; i+=2 )
         	vec.push_back( std::make_pair( std::atoi(argv[i]), std::atoi(argv[i + 1]) ) );
     	MergeInsertVec( vec, odd, tmp );
 
     	std::deque<std::pair<unsigned int, unsigned int> > deq;
-    	for ( int i = 1; i < argc; i+=2 )
+    	for ( int i = 0; i < argc; i+=2 )
         	deq.push_back( std::make_pair( std::atoi(argv[i]), std::atoi(argv[i + 1]) ) );
     	MergeInsertDeque( deq, odd, tmp );
 	}
