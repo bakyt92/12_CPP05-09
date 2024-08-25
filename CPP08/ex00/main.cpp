@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 19:41:42 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/07/21 23:53:50 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/25 22:18:08 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int main ()
 	}
 
 	try {
-		if (easyfind(vec, 22))
-			std::cout << "Number 22 is found in the container" << std::endl;
+		if (easyfind(vec, 4))
+			std::cout << "Number 4 is found in the container" << std::endl;
 	}
 	catch (const std::exception& e)
 	{
