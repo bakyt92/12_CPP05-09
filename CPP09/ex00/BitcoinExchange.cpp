@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:34 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/26 21:05:37 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/26 21:12:53 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,12 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &src)
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &rhs)
 {
 	std::cout << "Copy assignment operator is called" << std::endl;
+	if (this != &rhs)
+	{
+		this->address = rhs.address;
+		this->btc_db = rhs.btc_db;
+	}
+	return *this;
 }
 
 BitcoinExchange::~BitcoinExchange()
