@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:37 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/19 23:26:44 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/26 20:55:54 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ private:
 	std::map<std::string, float> btc_db;
 public:
 	BitcoinExchange(std::string input);
+	BitcoinExchange(const BitcoinExchange &src);
+	BitcoinExchange& operator=(const BitcoinExchange &rhs);
 	void exec(std::string address);
 	bool read_db(std::string data1);
 	~BitcoinExchange();

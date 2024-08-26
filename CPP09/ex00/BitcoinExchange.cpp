@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:34 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/20 03:54:07 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/26 21:05:37 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,18 @@ BitcoinExchange::BitcoinExchange(std::string input): address(input)
 {
 	std::cout << "BitcoinExchange constructor is called" << std::endl;
 	exec(address);
+}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &src)
+{
+	std::cout << "Copy constructor is called" << std::endl;
+	this->address = src.address;
+	this->btc_db = src.btc_db;
+}
+	
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &rhs)
+{
+	std::cout << "Copy assignment operator is called" << std::endl;
 }
 
 BitcoinExchange::~BitcoinExchange()
