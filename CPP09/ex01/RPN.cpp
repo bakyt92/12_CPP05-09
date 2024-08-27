@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:57 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/24 14:32:45 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/27 23:33:13 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,13 @@ bool RPN::ft_readline(std::string input_line)
 		}
 		if (input_line[i] == '*' || input_line[i] == '/' || input_line[i] == '+' || input_line[i] == '-')
 		{
-			this->res = ft_execute(input_line[i]);
+			if (digits.size() > 1)
+				this->res = ft_execute(input_line[i]);
+			else 
+			{
+				std::cerr << "Error. Less than 2 digits" << std::endl;
+				return false;
+			}
 			i++;
 		}
 	}
