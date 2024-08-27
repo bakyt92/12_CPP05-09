@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:53:31 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/25 22:15:11 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/27 21:46:06 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Span::Span(unsigned int i): _i(i)
 Span::Span(const Span &src)
 {
 	this->_i = src._i;
-	this->_list = src._list;
+	this->_vec = src._vec;
 	std::cout << "Copy Span contructor is called." << std::endl;
 	*this = src;
 }
@@ -31,7 +31,7 @@ Span& Span::operator=(const Span &rhs)
 	if (this != &rhs)
 	{
 		this->_i = rhs._i;
-		this->_list = rhs._list;
+		this->_vec = rhs._vec;
 	}
 	return *this;
 }
@@ -45,24 +45,38 @@ Span::~Span()
 
 void Span::addNumber(int x)
 {
-	if (_list.size() >= _i)
+	if (_vec.size() >= _i)
 		throw QuantityException();
-	_list.push_back(x);
+	_vec.push_back(x);
+	return;
+}
+
+void Span::addPlenty(size_t x)
+{
+	std::srand(time(0));
+
+	for (size_t i = 0; i < x; i++)
+	{
+		int random = std::rand() % x;
+		_vec.push_back(random);
+	}
+	return;
 }
 
 int Span::shortestSpan()
 {
-	if (_list.size() < 2)
+	if (_vec.size() < 2)
 		throw NotSufficientException();
-	std::list<int>::iterator it;
-	std::list<int>::iterator it2;
-	it = _list.begin();
-	it2 = _list.begin();
+	std::vector<int>::iterator it;
+	std::vector<int>::iterator it2;
+	std::sort(_vec.begin(),_vec.end());
+	it = _vec.begin();
+	it2 = _vec.begin();
 	++it2;
 	int res = std::abs(*it2 - *it);
-	while (it2 != _list.end())
+	while (it2 != _vec.end())
 	{
-		res = std::min(res, std::abs(*it2 - *it));
+		res = std::min(res, (*it2 - *it));
 		++it2;
 		++it;
 	}
@@ -71,19 +85,8 @@ int Span::shortestSpan()
 
 int Span::longestSpan()
 {
-	if (_list.size() < 2)
+	if (_vec.size() < 2)
 		throw NotSufficientException();
-	std::list<int>::iterator it;
-	std::list<int>::iterator it2;
-	it = _list.begin();
-	it2 = _list.begin();
-	++it2;
-	int res = std::abs(*it2 - *it);
-	while (it2 != _list.end())
-	{
-		res = std::max(res, std::abs(*it2 - *it));
-		++it2;
-		++it;
-	}
-	return res;
+	std::sort(_vec.begin(),_vec.end());
+	return (*(_vec.end() - 1) - *_vec.begin());
 }

@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:53:35 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/05 22:25:54 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/27 21:37:09 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 #include <iostream>
 #include <algorithm>
-#include <list>
+#include <vector>
 #include <exception>
 
 class Span
 {
 private:
-	std::list<int> _list;
+	std::vector<int> _vec;
 	unsigned int _i;
 public:
 	Span(unsigned int i);
@@ -30,6 +30,7 @@ public:
 	~Span();
 
 	void addNumber(int x);
+	void addPlenty(size_t x);
 	int shortestSpan();
 	int longestSpan();
 };
@@ -37,7 +38,7 @@ public:
 class QuantityException : public std::exception {
 	public:
 		const char* what() const throw() {
-        	return "Max size of list is reached. Impossible to add more numbers.";
+        	return "Max size of vector is reached. Impossible to add more numbers.";
     }
 };
 
