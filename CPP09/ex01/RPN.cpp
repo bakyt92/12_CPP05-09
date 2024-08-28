@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:57 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/27 23:33:13 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/28 21:44:00 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,6 @@ RPN::RPN(char* input)
 	this->res = INT_MIN;
 	if (ft_readline(this->line) == false)
 		return;
-	// if (this->digits.size() < 2)
-	// {
-	// 	std::cerr << "Wrong number of agruments" << std::endl;
-	// 	return;
-	// }
-	// if (this->digits.size() == (this->ops.size() + 1))
-	// 	std::cout << "Correct number of digits and ops" << std::endl;
-	// else 
-	// {
-	// 	std::cerr << "Wrong number of digits and operations" << std::endl;
-	// 	return;
-	// }
 	std::cout << "res is: " << this->res << std::endl;
 	return;
 }
@@ -57,13 +45,58 @@ RPN::~RPN()
 	std::cout << "RPN destructor is called" << std::endl;
 }
 
-bool RPN::ft_readline(std::string input_line)
+bool	RPN::ft_validation(std::string input_line)
 {
 	if (input_line.find_first_not_of(" */-+0123456789") != std::string::npos)
 	{
 		std::cerr << "Wrong symbols in the line" << std::endl;
 		return false;
 	}
+	std::size_t i = 0;
+	std::size_t digits = 0;
+	std::size_t ops = 0;
+	while (i < input_line.size())
+	{
+		if (isdigit(input_line[i]))
+		{
+			if (input_line[i + 1] != ' ' && input_line[i + 1] != '\n')
+			{
+				std::cerr << "Error. Next symbol to " << input_line[i] << " should be spase or endline" << std::endl;
+				return false;
+			}
+			digits++;
+			i++;
+		}
+		if (input_line[i] == '*' || input_line[i] == '/' || input_line[i] == '+' || input_line[i] == '-')
+		{
+			if (input_line[i + 1] != ' ' && (i + 1) < input_line.size())
+			{
+				std::cerr << "Error. Next symbol to " << input_line[i] << " should be space or endline" << std::endl;
+				return false;
+			}
+			ops++;
+			i++;
+		}
+		if (input_line[i] == ' ')
+			i++;
+	}
+	if (digits < 2)
+		{
+			std::cerr << "Error. Less than 2 digits. Please add digits in input" << std::endl;
+			return false;
+		}
+	if (digits != (ops + 1))
+		{
+			std::cerr << "Error. Wrong number of operators and digits" << std::endl;
+			return false;
+		}
+	return true;
+}
+
+bool RPN::ft_readline(std::string input_line)
+{
+	if (ft_validation(input_line) == false)
+		return false;
 	std::size_t i = 0;
 	std::string digs;
 	while (i < input_line.size())
@@ -73,24 +106,15 @@ bool RPN::ft_readline(std::string input_line)
 			i++;
 		if (isdigit(input_line[i]))
 		{
-			while (isdigit(input_line[i]))
-			{
-				digs.push_back(input_line[i]);
-				i++;
-			}
+			digs.push_back(input_line[i]);
+			i++;
 			this->digits.push(ft_stoi(digs));
 			std::cout << "PUSH int " << this->digits.top() << std::endl;
 			digs.clear();
 		}
 		if (input_line[i] == '*' || input_line[i] == '/' || input_line[i] == '+' || input_line[i] == '-')
 		{
-			if (digits.size() > 1)
-				this->res = ft_execute(input_line[i]);
-			else 
-			{
-				std::cerr << "Error. Less than 2 digits" << std::endl;
-				return false;
-			}
+			this->res = ft_execute(input_line[i]);
 			i++;
 		}
 	}
@@ -116,7 +140,6 @@ int RPN::ft_execute(char c)
 			tmp_res = tmp_res * this->digits.top();
 			std::cout << "operation *. Res is " << tmp_res << std::endl;
 			this->digits.pop();
-			// this->digits.push(tmp_res);
 			this->res = tmp_res;
 			break;
 		case '+':
