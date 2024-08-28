@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:02 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/28 21:01:38 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/08/28 21:59:12 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <sstream>
 #include <stack>
 #include <climits>
+#include <limits.h>
+#include <stdlib.h>
 
 std::string ft_ctos(char *input);
 int ft_stoi(std::string input);
