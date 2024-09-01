@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:27 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/25 22:04:44 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/09/01 15:20:18 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main (int argc, char** argv)
 	try {
 		PmergeMe<std::vector<int> > instance1(argv + 1);
 		PmergeMe<std::deque<int> > instance2(argv + 1);
-		instance1.ft_print_all();
+		// instance1.ft_print_all();
 		instance2.ft_print_all();
 		
 

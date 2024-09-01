@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:21 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/25 20:44:39 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/09/01 15:17:47 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@ void	MergeInsertVec(std::vector<std::pair<unsigned int, unsigned int> >&containe
 	{
 		if (container[i].first > container[i].second)
 			std::swap(container[i].first, container[i].second);
-		i++;
-	}
-	i = 0;
-	while (i < container.size())
-	{
 		low.push_back(container[i].first);
 		high.push_back(container[i].second);
 		i++;
@@ -45,12 +40,12 @@ void	MergeInsertVec(std::vector<std::pair<unsigned int, unsigned int> >&containe
 		high.insert(std::lower_bound(high.begin(), high.end(), tmp), tmp);
 	}
 
-	std::cout << "After: ";
+	std::cout << "After vector: ";
 	if ( high.size() < 6 ) {
         for ( size_t i = 0; i < high.size(); i++ )
             std::cout << high[i] << " ";
     } else {
-        for ( int i = 1; i < 6; i++ )
+        for ( int i = 0; i < 6; i++ )
             std::cout << high[i] << " ";
         std::cout << "[...]";
     }
@@ -58,7 +53,7 @@ void	MergeInsertVec(std::vector<std::pair<unsigned int, unsigned int> >&containe
 	gettimeofday(&end, NULL);
 	sec = end.tv_sec - start.tv_sec;
 	mic = end.tv_usec - start.tv_usec;
-	timeTaken = (sec / 1000000) + mic;
+	timeTaken = sec * 1000000 + mic;
 	std::cout << "Time to sort a range of " << high.size() << " elements with std::vector: " << timeTaken << " microseconds" << std::endl;
 }
 
@@ -73,11 +68,6 @@ void    MergeInsertDeque( std::deque<std::pair<unsigned int, unsigned int> > &co
 	{
 		if ( container[i].first > container[i].second )
             std::swap( container[i].first, container[i].second );
-		i++;
-	}
-	i = 0;
-	while (i < container.size())
-	{
 		low.push_back( container[i].first );
 		high.push_back( container[i].second );
 		i++;
@@ -89,7 +79,7 @@ void    MergeInsertDeque( std::deque<std::pair<unsigned int, unsigned int> > &co
     if ( odd )
         high.insert( std::lower_bound( high.begin(), high.end(), tmp), tmp );
 
-    std::cout << "After  : ";
+    std::cout << "After deque : ";
     if ( high.size() < 6 ) {
         for ( size_t i = 0; i < high.size(); i++ )
             std::cout << high[i] << " ";
@@ -103,6 +93,6 @@ void    MergeInsertDeque( std::deque<std::pair<unsigned int, unsigned int> > &co
     gettimeofday( &end, NULL );
     sec = end.tv_sec - start.tv_sec;
     mic = end.tv_usec - start.tv_usec;
-    timeTaken = ( sec / 1000000 ) + ( mic );
+    timeTaken = sec * 1000000 + mic;
     std::cout << "Time to sort a range of " << high.size() << " elements with std::deque : " << timeTaken << " microseconds" << std::endl;
 }

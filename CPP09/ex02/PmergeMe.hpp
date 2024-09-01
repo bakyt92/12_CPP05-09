@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:18 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/25 22:02:38 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/09/01 14:39:10 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <algorithm>
 #include <sstream>
 #include <cstdlib>
+#include <cctype>
 
 void    MergeInsertVec( std::vector<std::pair<unsigned int, unsigned int> > &container, const bool &odd, const unsigned int &tmp );
 void    MergeInsertDeque( std::deque<std::pair<unsigned int, unsigned int> > &container, const bool odd, const unsigned int tmp );
