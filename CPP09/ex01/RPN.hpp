@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:02 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/08/28 21:59:12 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/09/01 17:59:06 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <climits>
 #include <limits.h>
 #include <stdlib.h>
+#include <exception>
 
 std::string ft_ctos(char *input);
 int ft_stoi(std::string input);
@@ -33,6 +34,8 @@ private:
 public:
 	RPN(char* input);
 	~RPN();
+	RPN(const RPN &src);
+	RPN& operator=(const RPN &rhs);
 	int ft_execute(char c);
 	bool ft_readline(std::string input_line);
 	bool ft_validation(std::string input_line);
