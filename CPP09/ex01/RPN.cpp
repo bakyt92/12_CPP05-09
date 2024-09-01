@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:58:57 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/09/01 18:37:35 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/09/01 21:42:58 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ RPN::RPN(char* input)
 		std::cerr << "Caught " << e.what() << std::endl;
 		return;
 	}
-	std::cout << "Result is: " << this->res << std::endl;
+	std::cout << "Result is: " << this->digits.top() << std::endl;
 	return;
 }
 
@@ -129,114 +129,83 @@ bool RPN::ft_readline(std::string input_line)
 	if (ft_validation(input_line) == false)
 		return false;
 	std::size_t i = 0;
-	int tmp = INT_MIN;
-	int tmp1 = INT_MIN;
-	std::size_t numbers = 0;
 	std::string digs;
 	while (i < input_line.size())
 	{
-		// std::cout << "size T == " << i << std::endl;
+		std::cout << "size T == " << i << std::endl;
 		if (input_line[i] == ' ')
 			i++;
 		if (isdigit(input_line[i]))
 		{
-			if (i > 3 && this->res != INT_MIN && isdigit(input_line[i - 2]))
-			{
-				numbers++;
-				if (numbers == 2)
-				{
-					numbers = 0;
-					tmp = this->digits.top();
-					this->digits.pop();
-					tmp1 = this->digits.top();
-					this->digits.pop();
-					this->digits.push(this->res);
-					// std::cout << "PUSH int (res) " << this->digits.top() << std::endl;
-					this->digits.push(tmp1);
-					// std::cout << "PUSH int (tmp1) " << this->digits.top() << std::endl;
-					this->digits.push(tmp);
-					// std::cout << "PUSH int (tmp) " << this->digits.top() << std::endl;
-					this->res = INT_MIN;
-					tmp = INT_MIN;
-					tmp1 = INT_MIN;
-				}
-			}
 			digs.push_back(input_line[i]);
 			i++;
 			this->digits.push(ft_stoi(digs));
-			// std::cout << "PUSH int " << this->digits.top() << std::endl;
+			std::cout << "PUSH int " << this->digits.top() << std::endl;
 			digs.clear();
 		}
 		if (input_line[i] == '*' || input_line[i] == '/' || input_line[i] == '+' || input_line[i] == '-')
 		{
-			this->res = ft_execute(input_line[i]);
+			if (ft_execute(input_line[i]) == false)
+				return false;
 			i++;
 		}
 	}
 	return true;
 }
 
-int RPN::ft_execute(char c)
+bool RPN::ft_execute(char c)
 {
-	long long tmp_res = 0;		
-	if (this->res == INT_MIN)
+	long long oper1 = 0;
+	long long oper2 = 0;
+	long long res = 0;
+	if (this->digits.size() < 2)
 	{
-		tmp_res = this->digits.top();
-		// std::cout << "First oper. Res is " << tmp_res << std::endl;
-		this->digits.pop();	
-	}
-	else 
-	{
-		tmp_res = this->res;
-	}
-	if (this->digits.size() < 1)
-	{
-		std::cerr << "Size of stack<int> is below 1 (trying to execute with empty stack)" << std::endl;
+		std::cerr << "Size of stack<int> is below 2 (trying to execute with empty stack)" << std::endl;
 		throw std::exception();
-		return 1;
+		return false;
 	}
+	oper1 = this->digits.top();
+	this->digits.pop();
+	oper2 = this->digits.top();
+	this->digits.pop();
 	switch (c)
 	{
 		case '*':
-			tmp_res = tmp_res * this->digits.top();
-			if (tmp_res >= INT_MAX || tmp_res <= INT_MIN)
+			res = oper1 * oper2;
+			if (res >= INT_MAX || res <= INT_MIN)
 			{
 				throw std::overflow_error("Calculated value is out of int range");
 				return (1);
 			}
-			// std::cout << "operation *. Res is " << tmp_res << std::endl;
-			this->digits.pop();
-			this->res = tmp_res;
+			std::cout << "operation *. Res is " << res << std::endl;
+			this->digits.push(static_cast<int>(res));
 			break;
 		case '+':
-			tmp_res = tmp_res + this->digits.top();
-			// std::cout << "operation +. Res is " << tmp_res << std::endl;
-			this->digits.pop();
-			this->res = tmp_res;
+			res = oper1 + oper2;
+			std::cout << "operation +. Res is " << res << std::endl;
+			this->digits.push(static_cast<int>(res));
 			break;
 		case '-':
-			tmp_res = tmp_res - this->digits.top();
-			// std::cout << "operation -. Res is " << tmp_res << std::endl;
-			this->digits.pop();
-			this->res = tmp_res;
+			res = oper2 - oper1;
+			std::cout << "operation -. Res is " << res << std::endl;
+			this->digits.push(static_cast<int>(res));
 			break;
 		case '/':
-			if (this->digits.top() == 0)
+			if (oper1 == 0)
 				{
-					std::cerr << "Error. Division by 0 is impossible. Current res will be returned" << std::endl;
-					return (tmp_res);
+					std::cerr << "Error. Division by 0 is impossible" << std::endl;
+					return (false);
 				}
 			else 
-				tmp_res = tmp_res / this->digits.top();
-			// std::cout << "operation /. Res is " << tmp_res << std::endl;
-			this->digits.pop();
-			this->res = tmp_res;
+				res = oper2 / oper1;
+			std::cout << "operation /. Res is " << res << std::endl;
+			this->digits.push(static_cast<int>(res));
 			break;
 	}
-	if (tmp_res >= INT_MAX || tmp_res <= INT_MIN)
+	if (res >= INT_MAX || res <= INT_MIN)
 		{
 			throw std::overflow_error("Value out of int range");
 			return (1);
 		}
-	return (static_cast<int>(tmp_res));
+	return(true);
 }

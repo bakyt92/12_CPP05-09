@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:02 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/09/01 17:59:06 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/09/01 21:43:06 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ public:
 	~RPN();
 	RPN(const RPN &src);
 	RPN& operator=(const RPN &rhs);
-	int ft_execute(char c);
+	bool ft_execute(char c);
 	bool ft_readline(std::string input_line);
 	bool ft_validation(std::string input_line);
 };
