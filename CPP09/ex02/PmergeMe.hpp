@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:18 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/09/01 14:39:10 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/09/12 22:39:24 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@
 #include <cstdlib>
 #include <cctype>
 
-void    MergeInsertVec( std::vector<std::pair<unsigned int, unsigned int> > &container, const bool &odd, const unsigned int &tmp );
-void    MergeInsertDeque( std::deque<std::pair<unsigned int, unsigned int> > &container, const bool odd, const unsigned int tmp );
+void    MergeInsertVec( std::vector<std::pair<unsigned int, unsigned int> > &container, const bool &odd, const unsigned int &tmp, struct timeval start );
+void    MergeInsertDeque( std::deque<std::pair<unsigned int, unsigned int> > &container, const bool odd, const unsigned int tmp, struct timeval start );
 
 template <typename Container>
 class PmergeMe {
 	private:
 		Container	_data;
-
+		struct timeval start;
 	public:
 		typedef typename Container::value_type	value_type;
 		typedef typename Container::size_type	size_type;
@@ -39,11 +39,17 @@ class PmergeMe {
 		~PmergeMe();
 		PmergeMe(const PmergeMe &src);
 		PmergeMe& operator= (const PmergeMe &rhs);
+		timeval	get_time1(void);
 		int		ft_stoi(char *input);
 		void	ft_print_all(void);
 		unsigned int get_container_data(int i);
 };
 
+template<typename Container>
+timeval	PmergeMe<Container>::get_time1(void)
+{
+	return (this->start);
+}
 
 template<typename Container>
 int PmergeMe<Container>::ft_stoi(char *input)
@@ -99,6 +105,7 @@ PmergeMe<Container>::PmergeMe (char **input)
 		}
 		i++;
 	}
+	gettimeofday(&start,NULL);
 }
 
 template<typename Container>

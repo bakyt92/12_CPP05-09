@@ -6,17 +6,17 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:21 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/09/01 15:17:47 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/09/12 22:38:07 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-void	MergeInsertVec(std::vector<std::pair<unsigned int, unsigned int> >&container, const bool &odd,const unsigned int &tmp)
+void	MergeInsertVec(std::vector<std::pair<unsigned int, unsigned int> >&container, const bool &odd,const unsigned int &tmp, struct timeval start)
 {
 	std::vector <unsigned int> low, high;
-	struct timeval start, end;
-	gettimeofday(&start, NULL);
+	struct timeval end;
+	// gettimeofday(&start, NULL);
 	long		sec, mic, timeTaken;
 
 	size_t	i = 0;
@@ -57,9 +57,9 @@ void	MergeInsertVec(std::vector<std::pair<unsigned int, unsigned int> >&containe
 	std::cout << "Time to sort a range of " << high.size() << " elements with std::vector: " << timeTaken << " microseconds" << std::endl;
 }
 
-void    MergeInsertDeque( std::deque<std::pair<unsigned int, unsigned int> > &container, const bool odd, const unsigned int tmp ) {
+void    MergeInsertDeque( std::deque<std::pair<unsigned int, unsigned int> > &container, const bool odd, const unsigned int tmp, struct timeval start ) {
     std::deque<unsigned int>   low, high;
-    struct timeval  start, end;
+    struct timeval  end;
     long            sec, mic, timeTaken;
 
     gettimeofday( &start, NULL );
