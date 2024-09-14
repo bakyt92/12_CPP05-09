@@ -6,12 +6,12 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:21 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/09/14 20:48:47 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/09/14 23:48:59 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PmergeMe.hpp"
-
+//#include "PmergeMe.hpp"
+/*
 std::vector<unsigned int> js_insert(std::vector<unsigned int> &sorted, unsigned int val, unsigned int jacobshtal_pos)
 {
 	int low = jacobshtal_pos;
@@ -54,7 +54,7 @@ std::vector<unsigned int> generate_js (unsigned int x)
 	}
 	return (jacobshtal_n);
 }
-
+*/
 /*
 JS bumbers
 1. {0 , 1 , 1}
@@ -62,7 +62,7 @@ JS bumbers
 3. {0, 1, 1, 3, 7}
 4. {0, 1, 1, 3, 7, 17}
 */
-
+/*
 std::vector<unsigned int>  fj_sort (std::vector<unsigned int> &vec)
 {
 	if (vec.size() < 2)
@@ -106,7 +106,9 @@ void	MergeInsertVec(std::vector<std::pair<unsigned int, unsigned int> >&containe
 		i++;
 	}
 	low = fj_sort(low);
-	
+	if (odd) {
+        high.insert(std::lower_bound(high.begin(), high.end(), tmp), tmp);  // Insert 'tmp' in the correct sorted position
+    }
 	std::cout << "After vector: ";
 	if ( high.size() < 6 ) {
         for ( size_t i = 0; i < high.size(); i++ )
@@ -162,3 +164,4 @@ void    MergeInsertDeque( std::deque<std::pair<unsigned int, unsigned int> > &co
     timeTaken = sec * 1000000 + mic;
     std::cout << "Time to sort a range of " << high.size() << " elements with std::deque : " << timeTaken << " microseconds" << std::endl;
 }
+*/;
