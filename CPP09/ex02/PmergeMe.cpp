@@ -104,17 +104,17 @@ void	MergeInsertVec(std::vector<std::pair<unsigned int, unsigned int> >&containe
 		i++;
 	}
 	small_num = fj_sort(low);
-	std::sort(high.begin(), high.end());
-	i = 0;
-	while (i < low.size())
-	{
-		high.insert(std::lower_bound(high.begin(), high.end(), low[i]), low[i]);
-		i++;
-	}
-	if (odd)
-	{
-		high.insert(std::lower_bound(high.begin(), high.end(), tmp), tmp);
-	}
+	// std::sort(high.begin(), high.end());
+	// i = 0;
+	// while (i < low.size())
+	// {
+	// 	high.insert(std::lower_bound(high.begin(), high.end(), low[i]), low[i]);
+	// 	i++;
+	// }
+	// if (odd)
+	// {
+	// 	high.insert(std::lower_bound(high.begin(), high.end(), tmp), tmp);
+	// }
 
 	std::cout << "After vector: ";
 	if ( high.size() < 6 ) {
