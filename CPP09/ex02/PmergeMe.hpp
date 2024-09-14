@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:18 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/09/14 23:52:34 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/09/15 00:47:17 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ class PmergeMe {
 		Container	_data;
 		struct timeval start;
 		typedef std::pair<unsigned int, unsigned int> pair_ex;
-    	typedef Container<pair_ex> Pairs;
-    	Pairs pairsss;
+    	// typedef std::vector<pair_ex> PairsV;
+    	// PairsV pairsVec;
+		// typedef std::deque<pair_ex> PairsD;
+    	// PairsD pairsDeq;
 	public:
 		typedef typename Container::value_type	value_type;
 		typedef typename Container::size_type	size_type;
@@ -51,13 +53,13 @@ class PmergeMe {
 		int		ft_stoi(char *input);
 		void	ft_print_all(void);
 		unsigned int get_container_data(int i);
-		void	pairing(Container T);
-		void	sortContainer(void);
-		Container	mergeContainer(Container &T1, Container &T2);
-		Container	fj_sort(Container &T);
-		Container	generate_js (unsigned int x);
-		Container	js_insert(Container &sorted, unsigned int val, unsigned int jacobshtal_pos);
-		Container	mergeInsert (Container &T1, Container &T2, Container &jacob);
+		// void	pairing(const Container &T);
+		// void	sortContainer(void);
+		// Container	mergeContainer(Container &T1, Container &T2);
+		// Container	fj_sort(Container &T);
+		// Container	generate_js (unsigned int x);
+		// Container	js_insert(Container &sorted, unsigned int val, unsigned int jacobshtal_pos);
+		// Container	mergeInsert (const Container &T1, const Container &T2, const Container &jacob);
 };
 
 // typedef std::pair <unsigned int, unsigned int>	pair_ex;
@@ -98,13 +100,37 @@ unsigned int PmergeMe<Container>::get_container_data(int i)
 	return(this->_data[i]);
 }
 
-template<typename Container>
-void	PmergeMe<Container>::pairing(Container T)
-{
-	for (size_t i = 0; i + 1 < T.size(); i+=2)
-		pairsss.push_back(std::make_pair(this->get_container_data[i], this->get_container_data[i + 1]));
-	return;
+template<>
+void PmergeMe<std::vector<unsigned int>>::pairing(const std::vector<unsigned int>& T) {
+    for (size_t i = 0; i + 1 < T.size(); i += 2) {
+        pairsVec.push_back(std::make_pair(T[i], T[i + 1]));
+    }
 }
+
+// Specialization for std::deque<unsigned int>
+template<>
+void PmergeMe<std::deque<unsigned int>>::pairing(const std::deque<unsigned int>& T) {
+    for (size_t i = 0; i + 1 < T.size(); i += 2) {
+        pairsVec.push_back(std::make_pair(T[i], T[i + 1]));
+    }
+}
+
+
+
+// template<typename Container>
+// void	PmergeMe<Container>::pairing(Container T)
+// {
+// 	if constexpr (std::is_same_v<Container, std::vector<unsigned int>>) {
+// 		for (size_t i = 0; i + 1 < T.size(); i += 2)
+// 			pairsVec.push_back(std::make_pair(T[i], T[i + 1]));
+
+//     } 
+// 	else if constexpr (std::is_same_v<Container, std::deque<unsigned int>>) {
+// 		for (size_t i = 0; i + 1 < T.size(); i += 2)
+// 			pairsVec.push_back(std::make_pair(T[i], T[i + 1]));
+// 	}
+// 	return;
+// }
 
 template<typename Container>
 Container	PmergeMe<Container>::mergeContainer(Container &T1, Container &T2)
@@ -142,11 +168,11 @@ Container	PmergeMe<Container>::mergeContainer(Container &T1, Container &T2)
 template<typename Container>
 Container	PmergeMe<Container>::js_insert(Container &sorted, unsigned int val, unsigned int jacobshtal_pos)
 {
-	int low = jacobshtal_pos;
-	int high = sorted.size();
+	unsigned int low = jacobshtal_pos;
+	unsigned int high = sorted.size();
 	while (low < high)
 	{
-		int mid = low + (high - low) / 2;
+		unsigned int mid = low + (high - low) / 2;
 		if (sorted[mid] < val)
 		{
 			low = mid + 1;
@@ -159,7 +185,7 @@ Container	PmergeMe<Container>::js_insert(Container &sorted, unsigned int val, un
 }
 
 template<typename Container>
-Container	PmergeMe<Container>::mergeInsert (Container &T1, Container &T2, Container &jacob)
+Container	PmergeMe<Container>::mergeInsert (const Container &T1, const Container &T2, const Container &jacob)
 {
 	Container res = T1;
 	for (size_t i = 0; i < T2.size(); ++i)
@@ -208,13 +234,26 @@ void	PmergeMe<Container>::sortContainer(void)
 	// long		sec, mic, timeTaken;
 
 	size_t	i = 0;
-	while (i < pairsss.size())
+	if constexpr (std::is_same_v<Container, std::vector<unsigned int>>) {
+		while (i < pairsVec.size())
+		{
+			if (pairsVec[i].first > pairsVec[i].second)
+				std::swap(pairsVec[i].first, pairsVec[i].second);
+			low.push_back(pairsVec[i].first);
+			high.push_back(pairsVec[i].second);
+			i++;
+		}
+	}
+	else if constexpr (std::is_same_v<Container, std::deque<unsigned int>>)
 	{
-		if (pairsss[i].first > pairsss[i].second)
-			std::swap(pairsss[i].first, pairsss[i].second);
-		low.push_back(pairsss[i].first);
-		high.push_back(pairsss[i].second);
-		i++;
+		while (i < pairsDeq.size())
+		{
+			if (pairsDeq[i].first > pairsDeq[i].second)
+				std::swap(pairsDeq[i].first, pairsDeq[i].second);
+			low.push_back(pairsDeq[i].first);
+			high.push_back(pairsDeq[i].second);
+			i++;
+		}
 	}
 	low = fj_sort(low);
 	Container jacobsthal_num = generate_js(high.size());
