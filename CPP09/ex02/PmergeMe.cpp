@@ -6,11 +6,60 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:21 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/09/13 03:47:00 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:05:07 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+
+std::vector<unsigned int> js_insert(std::vector<unsigned int> &sorted, int val, int jacobshtal_pos)
+{
+	int low = jacobshtal_pos;
+	int high = sorted.size();
+	while (low < high)
+	{
+		int mid = low + (high - low) / 2;
+		if (sorted[mid] < val)
+		{
+			low = mid + 1;
+		}
+		else 
+			high = mid;
+	}
+	sorted.insert(sorted.begin() + low, val);
+	return sorted;
+}
+
+std::vector<unsigned int> merge_ins(std::vector <unsigned int> &min, std::vector <unsigned int> &max, std::vector <unsigned int> &jacobshtal_num)
+{
+	std::vector<unsigned int> res = min;
+	for (size_t i = 0; i < max.size(); ++i)
+	{
+		int index = std::min(i, jacobshtal_num.size() - 1);
+		res = js_insert(res, min[i], jacobshtal_num[index]);
+	}
+	return res;
+}
+
+std::vector<unsigned int> generate_js (unsigned int x)
+{
+	std::vector<unsigned int> jacobshtal_n = {0 , 1};
+	int i = 2;
+	while (i <= x)
+	{
+		jacobshtal_n.push_back(jacobshtal_n[i - 1] + 2 * jacobshtal_n[i - 2]);
+		++i;
+	}
+	return (jacobshtal_n);
+}
+
+/*
+JS bumbers
+1. {0 , 1 , 1}
+2. {0, 1, 1, 3}
+3. {0, 1, 1, 3, 7}
+4. {0, 1, 1, 3, 7, 17}
+*/
 
 std::vector<unsigned int>  fj_sort (std::vector<unsigned int> &vec)
 {
@@ -32,8 +81,11 @@ std::vector<unsigned int>  fj_sort (std::vector<unsigned int> &vec)
 	}
 	if (vec.size() % 2 != 0)
 		minim_pair.push_back(vec.back());
+	// recursion for sorting minim pairs
 	minim_pair = fj_sort(minim_pair);
-	
+	std::vector <unsigned int> jacobsthal_num = generate_js(maxim_pair.size());
+	std::vector <unsigned int> sorted = merge_ins(minim_pair, maxim_pair, jacobsthal_num);
+	return sorted;
 }
 
 void	MergeInsertVec(std::vector<std::pair<unsigned int, unsigned int> >&container, const bool &odd,const unsigned int &tmp, struct timeval start)
