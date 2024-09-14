@@ -6,17 +6,40 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:21 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/09/12 22:38:07 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/09/13 03:47:00 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
+std::vector<unsigned int>  fj_sort (std::vector<unsigned int> &vec)
+{
+	if (vec.size() < 2)
+		return vec;
+	std::vector <unsigned int> minim_pair, maxim_pair;
+	for (size_t i = 0; i + 1 < vec.size(); i+= 2)
+	{
+		if (vec[i] > vec[i + 1])
+		{
+			minim_pair.push_back(vec[i + 1]);
+			maxim_pair.push_back(vec[i]);
+		}
+		else 
+		{
+			minim_pair.push_back(vec[i]);
+			maxim_pair.push_back(vec[i + 1]);
+		}	
+	}
+	if (vec.size() % 2 != 0)
+		minim_pair.push_back(vec.back());
+	minim_pair = fj_sort(minim_pair);
+	
+}
+
 void	MergeInsertVec(std::vector<std::pair<unsigned int, unsigned int> >&container, const bool &odd,const unsigned int &tmp, struct timeval start)
 {
-	std::vector <unsigned int> low, high;
+	std::vector <unsigned int> low, high, small_num;
 	struct timeval end;
-	// gettimeofday(&start, NULL);
 	long		sec, mic, timeTaken;
 
 	size_t	i = 0;
@@ -28,6 +51,7 @@ void	MergeInsertVec(std::vector<std::pair<unsigned int, unsigned int> >&containe
 		high.push_back(container[i].second);
 		i++;
 	}
+	small_num = fj_sort(low);
 	std::sort(high.begin(), high.end());
 	i = 0;
 	while (i < low.size())
@@ -89,7 +113,6 @@ void    MergeInsertDeque( std::deque<std::pair<unsigned int, unsigned int> > &co
         std::cout << "[...]";
     }
     std::cout << std::endl;
-
     gettimeofday( &end, NULL );
     sec = end.tv_sec - start.tv_sec;
     mic = end.tv_usec - start.tv_usec;
