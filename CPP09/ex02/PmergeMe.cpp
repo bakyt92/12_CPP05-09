@@ -6,13 +6,13 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:21 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/09/14 18:05:07 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/09/14 20:27:34 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-std::vector<unsigned int> js_insert(std::vector<unsigned int> &sorted, int val, int jacobshtal_pos)
+std::vector<unsigned int> js_insert(std::vector<unsigned int> &sorted, unsigned int val, unsigned int jacobshtal_pos)
 {
 	int low = jacobshtal_pos;
 	int high = sorted.size();
@@ -43,8 +43,10 @@ std::vector<unsigned int> merge_ins(std::vector <unsigned int> &min, std::vector
 
 std::vector<unsigned int> generate_js (unsigned int x)
 {
-	std::vector<unsigned int> jacobshtal_n = {0 , 1};
-	int i = 2;
+	std::vector<unsigned int> jacobshtal_n;
+	jacobshtal_n.push_back(0);
+	jacobshtal_n.push_back(1);
+	unsigned int i = 2;
 	while (i <= x)
 	{
 		jacobshtal_n.push_back(jacobshtal_n[i - 1] + 2 * jacobshtal_n[i - 2]);
@@ -90,7 +92,7 @@ std::vector<unsigned int>  fj_sort (std::vector<unsigned int> &vec)
 
 void	MergeInsertVec(std::vector<std::pair<unsigned int, unsigned int> >&container, const bool &odd,const unsigned int &tmp, struct timeval start)
 {
-	std::vector <unsigned int> low, high, small_num;
+	std::vector <unsigned int> low, high;
 	struct timeval end;
 	long		sec, mic, timeTaken;
 
@@ -103,19 +105,8 @@ void	MergeInsertVec(std::vector<std::pair<unsigned int, unsigned int> >&containe
 		high.push_back(container[i].second);
 		i++;
 	}
-	small_num = fj_sort(low);
-	// std::sort(high.begin(), high.end());
-	// i = 0;
-	// while (i < low.size())
-	// {
-	// 	high.insert(std::lower_bound(high.begin(), high.end(), low[i]), low[i]);
-	// 	i++;
-	// }
-	// if (odd)
-	// {
-	// 	high.insert(std::lower_bound(high.begin(), high.end(), tmp), tmp);
-	// }
-
+	low = fj_sort(low);
+	
 	std::cout << "After vector: ";
 	if ( high.size() < 6 ) {
         for ( size_t i = 0; i < high.size(); i++ )
