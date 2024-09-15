@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:21 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/09/15 18:11:32 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/09/15 22:55:22 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 std::vector<unsigned int> js_insert(std::vector<unsigned int> &sorted, unsigned int val, unsigned int jacobshtal_pos)
 {
+	jacobshtal_pos = std::min(jacobshtal_pos, static_cast<unsigned int>(sorted.size()));
 	int low = jacobshtal_pos;
+	std::cout << "jacobs pos" << jacobshtal_pos << std::endl;
 	int high = sorted.size();
 	while (low < high)
 	{
@@ -26,7 +28,18 @@ std::vector<unsigned int> js_insert(std::vector<unsigned int> &sorted, unsigned 
 		else 
 			high = mid;
 	}
+	std::cout << "before test for binary insertion" << std::endl;
+	for (size_t i = 0; i < sorted.size(); i++)
+	{
+		std::cout << sorted[i] << " "; 
+	}
 	sorted.insert(sorted.begin() + low, val);
+	std::cout << "after test for binary insertion" << std::endl;
+	for (size_t i = 0; i < sorted.size(); i++)
+	{
+		std::cout << sorted[i] << " "; 
+	}
+	std::cout << std::endl;
 	return sorted;
 }
 
@@ -55,39 +68,47 @@ std::vector<unsigned int> generate_js (unsigned int x)
 	return (jacobshtal_n);
 }
 
-/*
-JS bumbers
-1. {0 , 1 , 1}
-2. {0, 1, 1, 3}
-3. {0, 1, 1, 3, 7}
-4. {0, 1, 1, 3, 7, 17}
-*/
+std::vector<unsigned int>  merge_vect (std::vector<unsigned int> &min, std::vector<unsigned int> &max)
+{
+	std::vector<unsigned int> vct;
+	size_t k = 0;
+	size_t l = 0;
+	while (k < min.size() && l < max.size())
+	{
+		if (min[k] <= max[l])
+		{
+			vct.push_back(min[k]);
+			k++;
+		}
+		else 
+		{
+			vct.push_back(max[l]);
+			l++;
+		}
+	}
+	while (k < min.size())
+	{
+		vct.push_back(min[k]);
+		k++;
+	}
+	while (l < max.size())
+	{
+		vct.push_back(max[l]);
+		l++;
+	}
+	return (vct);
+}
 
 std::vector<unsigned int>  fj_sort (std::vector<unsigned int> &vec)
 {
 	if (vec.size() < 2)
 		return vec;
-	std::vector <unsigned int> minim_pair, maxim_pair;
-	for (size_t i = 0; i + 1 < vec.size(); i+= 2)
-	{
-		if (vec[i] > vec[i + 1])
-		{
-			minim_pair.push_back(vec[i + 1]);
-			maxim_pair.push_back(vec[i]);
-		}
-		else 
-		{
-			minim_pair.push_back(vec[i]);
-			maxim_pair.push_back(vec[i + 1]);
-		}	
-	}
-	if (vec.size() % 2 != 0)
-		minim_pair.push_back(vec.back());
-	// recursion for sorting minim pairs
-	minim_pair = fj_sort(minim_pair);
-	std::vector <unsigned int> jacobsthal_num = generate_js(maxim_pair.size());
-	std::vector <unsigned int> sorted = merge_ins(minim_pair, maxim_pair, jacobsthal_num);
-	return sorted;
+	int mid = vec.size() / 2;
+	std::vector<unsigned int> minim(vec.begin(), vec.begin() + mid);
+	std::vector<unsigned int> maxim(vec.begin() + mid, vec.end());
+	minim = fj_sort(minim);
+	maxim = fj_sort(maxim);
+	return (merge_vect(minim, maxim));
 }
 
 void	MergeInsertVec(std::vector<std::pair<unsigned int, unsigned int> >&container, const bool &odd,const unsigned int &tmp, struct timeval start)
@@ -105,18 +126,21 @@ void	MergeInsertVec(std::vector<std::pair<unsigned int, unsigned int> >&containe
 		high.push_back(container[i].second);
 		i++;
 	}
-	low = fj_sort(low);
 	if (odd) {
-        high.insert(std::lower_bound(high.begin(), high.end(), tmp), tmp);  // Insert 'tmp' in the correct sorted position
+        low.push_back(tmp);
+		std::cout << "**** ODD LOW: " << tmp << std::endl;
     }
-	
+	low = fj_sort(low);
+	high = fj_sort(high);
+	std::vector<unsigned int> jacobshtal_seq = generate_js(high.size());
+	std::vector <unsigned int> sorted = merge_ins(low, high, jacobshtal_seq);
 	std::cout << "After vector: ";
-	if ( high.size() < 6 ) {
-        for ( size_t i = 0; i < high.size(); i++ )
-            std::cout << high[i] << " ";
+	if ( sorted.size() < 20 ) {
+        for ( size_t i = 0; i < sorted.size(); i++ )
+            std::cout << sorted[i] << " ";
     } else {
-        for ( int i = 0; i < 6; i++ )
-            std::cout << high[i] << " ";
+        for ( int i = 0; i < 20; i++ )
+            std::cout << sorted[i] << " ";
         std::cout << "[...]";
     }
     std::cout << std::endl;
@@ -124,7 +148,7 @@ void	MergeInsertVec(std::vector<std::pair<unsigned int, unsigned int> >&containe
 	sec = end.tv_sec - start.tv_sec;
 	mic = end.tv_usec - start.tv_usec;
 	timeTaken = sec * 1000000 + mic;
-	std::cout << "Time to sort a range of " << high.size() << " elements with std::vector: " << timeTaken << " microseconds" << std::endl;
+	std::cout << "Time to sort a range of " << sorted.size() << " elements with std::vector: " << timeTaken << " microseconds" << std::endl;
 }
 
 void    MergeInsertDeque( std::deque<std::pair<unsigned int, unsigned int> > &container, const bool odd, const unsigned int tmp, struct timeval start ) {
@@ -147,8 +171,10 @@ void    MergeInsertDeque( std::deque<std::pair<unsigned int, unsigned int> > &co
         high.insert( std::lower_bound( high.begin(), high.end(), low[i]), low[i] );
 
     if ( odd )
-        high.insert( std::lower_bound( high.begin(), high.end(), tmp), tmp );
-
+	{
+		high.insert( std::lower_bound( high.begin(), high.end(), tmp), tmp );
+	}
+	//high.insert(high.begin(), low.begin(), low.end());
     std::cout << "After deque : ";
     if ( high.size() < 6 ) {
         for ( size_t i = 0; i < high.size(); i++ )
