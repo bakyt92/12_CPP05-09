@@ -6,7 +6,7 @@
 /*   By: ufitzhug <ufitzhug@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 22:59:27 by ufitzhug          #+#    #+#             */
-/*   Updated: 2024/09/14 23:27:19 by ufitzhug         ###   ########.fr       */
+/*   Updated: 2024/09/15 17:55:33 by ufitzhug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,14 @@ int main (int argc, char** argv)
         	tmp = std::atoi( argv[argc - 1] );
        		argc-=1;
     	}
-		instance1.sortContainer();
-		instance2.sortContainer();
-		// std::vector<std::pair<unsigned int, unsigned int> > vec;
-    	// for ( int i = 0; i + 1 < argc; i+=2 )
-        // 	vec.push_back( std::make_pair( instance1.get_container_data(i), instance1.get_container_data(i + 1)) );
-    	// MergeInsertVec( vec, odd, tmp, instance1.get_time1() );
-    	// std::deque<std::pair<unsigned int, unsigned int> > deq;
-    	// for ( int i = 0; i + 1 < argc; i+=2 )
-        // 	deq.push_back( std::make_pair( instance2.get_container_data(i), instance2.get_container_data(i + 1)) );
-    	// MergeInsertDeque( deq, odd, tmp, instance2.get_time1() );
+		std::vector<std::pair<unsigned int, unsigned int> > vec;
+    	for ( int i = 0; i + 1 < argc; i+=2 )
+        	vec.push_back( std::make_pair( instance1.get_container_data(i), instance1.get_container_data(i + 1)) );
+    	MergeInsertVec( vec, odd, tmp, instance1.get_time1() );
+    	std::deque<std::pair<unsigned int, unsigned int> > deq;
+    	for ( int i = 0; i + 1 < argc; i+=2 )
+        	deq.push_back( std::make_pair( instance2.get_container_data(i), instance2.get_container_data(i + 1)) );
+    	MergeInsertDeque( deq, odd, tmp, instance2.get_time1() );
 	}
 	catch (std::exception &e)
 	{
